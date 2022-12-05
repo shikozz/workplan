@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-\\Server03\Site\localhost\www\3IS2\Lebedev\WorkPlan\WorkPlan\obj\Debug\
+D:\4ИС2\lebedev\workplan-main\WorkPlan\obj\Debug\
 WorkPlan
 none
 false
 DEBUG;TRACE
-\\Server03\Site\localhost\www\3IS2\Lebedev\WorkPlan\WorkPlan\App.xaml
-7-1181816170
+D:\4ИС2\lebedev\workplan-main\WorkPlan\App.xaml
+13-1217644869
 2-246117042
-26-1020336816
-201825162420
-AddApplication.xaml;MainWindow.xaml;Pages\Goods.xaml;Pages\MainFrame.xaml;SiGlogREGWind.xaml;SiGlogWind.xaml;User.xaml;
+32-1335006930
+20269298716
+AddGood.xaml;appRedaction.xaml;castApp.xaml;castRedact.xaml;MainWindow.xaml;Pages\Applications.xaml;Pages\Goods.xaml;Pages\MainFrame.xaml;Pages\userApps.xaml;Pages\userGoods.xaml;SiGlogREGWind.xaml;SiGlogWind.xaml;User.xaml;
 
 True
 

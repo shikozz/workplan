@@ -66,8 +66,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AddApplication.xaml.cs">
-      <DependentUpon>AddApplication.xaml</DependentUpon>
+    <Compile Include="AddGood.xaml.cs">
+      <DependentUpon>AddGood.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="appRedaction.xaml.cs">
+      <DependentUpon>appRedaction.xaml</DependentUpon>
     </Compile>
     <Compile Include="Base\Applications.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -111,12 +114,27 @@
     <Compile Include="Base\Users.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="castApp.xaml.cs">
+      <DependentUpon>castApp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="castRedact.xaml.cs">
+      <DependentUpon>castRedact.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ConverterValue.cs" />
+    <Compile Include="Pages\Applications.xaml.cs">
+      <DependentUpon>Applications.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Goods.xaml.cs">
       <DependentUpon>Goods.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\MainFrame.xaml.cs">
       <DependentUpon>MainFrame.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\userApps.xaml.cs">
+      <DependentUpon>userApps.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\userGoods.xaml.cs">
+      <DependentUpon>userGoods.xaml</DependentUpon>
     </Compile>
     <Compile Include="SiGlogREGWind.xaml.cs">
       <DependentUpon>SiGlogREGWind.xaml</DependentUpon>
@@ -128,7 +146,19 @@
     <Compile Include="User.xaml.cs">
       <DependentUpon>User.xaml</DependentUpon>
     </Compile>
-    <Page Include="AddApplication.xaml">
+    <Page Include="AddGood.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="appRedaction.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="castApp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="castRedact.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -144,11 +174,23 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Pages\Applications.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\Goods.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\MainFrame.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\userApps.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\userGoods.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -211,6 +253,8 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <Resource Include="Pictures\xmark.png" />
+    <Resource Include="Pictures\plus.png" />
     <Resource Include="Pictures\goods.png" />
     <Resource Include="Pictures\new.jpg" />
   </ItemGroup>

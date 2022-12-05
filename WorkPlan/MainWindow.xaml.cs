@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WorkPlan.Pages;
 
 namespace WorkPlan
 {
@@ -24,10 +25,30 @@ namespace WorkPlan
         private Base.Entities DataBase;
         public Base.Users User { get; set; }
         public Base.Employee Employee { get; set; }
+        int roleNum = 0;
 
         public MainWindow(int Role)
         {
             InitializeComponent();
+            roleNum = Role;
+            navigation(Role);
+            sizeCombo.Items.Add("100%");
+            sizeCombo.Items.Add("150%");
+            sizeCombo.Items.Add("200%");
+            sizeCombo.SelectedIndex = 0;
+        }
+
+        public void getName(int Role) 
+        {
+            userButton.Content = "Выход";
+            Base.Users User = DataBase.Users.SingleOrDefault(U => U.ID_user == Role);
+            int emcode = User.ID_employee;
+            Base.Employee Employee = DataBase.Employee.SingleOrDefault(U => U.ID_employee == emcode);
+            text.Text = Employee.ФИО+" - "+User.Права;
+        }
+
+        public void navigation(int role) 
+        {
             try
             {
                 DataBase = new Base.Entities();
@@ -39,28 +60,15 @@ namespace WorkPlan
                     "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Warning);
                 Close();
             }
-            RootFrame.Navigate(new Pages.MainFrame(Role));
-            getName(Role);
-        }
-
-        public void getName(int Role) 
-        {
-            Base.Users User = DataBase.Users.SingleOrDefault(U => U.ID_employee == Role);
-            int emcode = User.ID_employee;
-            Base.Employee Employee = DataBase.Employee.SingleOrDefault(U => U.ID_employee == emcode);
-            text.Text = Employee.ФИО;
-            userButton.Content = User.Права;
-        }
-
-        public void navigation(string name) 
-        {
-        //    RootFrame();
+            RootFrame.Navigate(new Pages.MainFrame(role, this.Width,this.Height,this));
+            getName(role);
         }
 
         private void OnKeyDownHandler(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Escape) 
-            { Close();  }
+            //if (e.Key == Key.Escape) { Close();  }
+            if (e.Key == Key.Escape)
+            { navigation(roleNum); }
         }
 
         private void userButton_Click(object sender, RoutedEventArgs e)
@@ -68,6 +76,64 @@ namespace WorkPlan
             SiGlogWind window = new SiGlogWind();
             window.Show();
             Close();
+        }
+
+        public double widthNow()
+        {
+            return this.Width;
+        }
+
+        private void gohome(object sender, RoutedEventArgs e)
+        {
+            navigation(roleNum);
+        }
+
+        private void closeapp(object sender, RoutedEventArgs e)
+        {
+            if (System.Windows.MessageBox.Show("Выйти из приложения?", "Выход", MessageBoxButton.OKCancel, MessageBoxImage.Warning) == MessageBoxResult.OK)
+            {
+                Close();
+            }
+        }
+
+        private void closeAppText(object sender, MouseButtonEventArgs e)
+        {
+            if (System.Windows.MessageBox.Show("Выйти из приложения?", "Выход", MessageBoxButton.OKCancel, MessageBoxImage.Stop) == MessageBoxResult.OK)
+            {
+                Close();
+            }
+        }
+
+        private void Button_MouseEnter(object sender, MouseEventArgs e)
+        {
+            
+        }
+
+
+
+        private void sizeCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (sizeCombo.SelectedItem.ToString() == "100%")
+            {
+                this.Width = 700;
+                this.Height = 500;
+                
+            }
+            if (sizeCombo.SelectedItem.ToString() == "150%") 
+            {
+                this.Width = 1050;
+                this.Height = 750;
+            }
+            if (sizeCombo.SelectedItem.ToString() == "200%")
+            {
+                this.Width = 1400;
+                this.Height = 1000;
+            }
+        }
+
+        private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+
         }
     }
 }

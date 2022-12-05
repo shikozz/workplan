@@ -44,21 +44,21 @@
 
                     <StackPanel Margin="10,15,20,0">
                         <DockPanel >
-                            <Label FontFamily="Inder" Content="Login" Width="90"/>
+                            <Label FontFamily="Inder" Content="Логин" Width="90"/>
                             <TextBox FontFamily="Inder" x:Name="LoginTextBox" TabIndex="0"/>
                         </DockPanel>
 
                         <DockPanel Margin="0,5,0,0">
-                            <Label FontFamily="Inder" Content="Password" Width="90"/>
+                            <Label FontFamily="Inder" Content="Пароль" Width="90"/>
                             <Button FontFamily="Inder" x:Name="PasswordButton" DockPanel.Dock="Right" 
-                        Content="Show" Width="75" Margin="8,2,0,2" TabIndex="1"
+                        Content="Показать" Width="75" Margin="8,2,0,2" TabIndex="1"
                         Click="PasswordButton_Click"/>
                             <TextBox FontFamily="Inder" x:Name="PasswordTextBox" Width="0" Visibility="Hidden"
                              TabIndex="1"/>
                             <PasswordBox FontFamily="Inder" x:Name="PasswordPasswordBox" TabIndex="2"/>
                         </DockPanel>
                         <DockPanel Margin="0,5,0,0">
-                            <Label FontFamily="Inder" Content="Unic. num" Width="90"/>
+                            <Label FontFamily="Inder" Content="Уник. номер" Width="90"/>
                             <TextBox FontFamily="Inder" x:Name="IDTextBox" TabIndex="0"/>
                         </DockPanel>
                         <DockPanel>
@@ -69,16 +69,16 @@
                  FontStretch="UltraCondensed" IsReadOnly="True"></TextBox>
                         <TextBox DockPanel.Dock="Top" FontFamily="Inder" x:Name="check" Margin="5,20,0,0" Height="15" Width="108" HorizontalAlignment="Left"></TextBox>
 
-                        <Button DockPanel.Dock="Top" FontFamily="Inder" Content="Show CAPTCHA" Height="33" HorizontalAlignment="Left" 
+                        <Button DockPanel.Dock="Top" FontFamily="Inder" Content="Показать КАПТЧУ" Height="33" HorizontalAlignment="Left" 
                 Margin="5,5,0,0" Name="button1" VerticalAlignment="Top" Width="108" Click="button1_Click" >
                         </Button>
                         </DockPanel>
 
                         <DockPanel Height="25" Margin="0,14,0,0" LastChildFill="False" >
-                            <Button FontFamily="Inder"  x:Name="OkButton" Content="OK" Width="75" 
+                            <Button FontFamily="Inder"  x:Name="OkButton" Content="Регистрация" Width="108" 
                             DockPanel.Dock="Right" TabIndex="3" IsDefault="True"
                             Click="OkButton_Click"/>
-                            <Button FontFamily="Inder" x:Name="CancelButton" Content="Cancel" Width="75"
+                            <Button FontFamily="Inder" x:Name="CancelButton" Content="Отмена" Width="75"
                         DockPanel.Dock="Right" Margin="0,0,10,0" TabIndex="4"
                         IsCancel="True" Click="CancelButton_Click"/>
                         </DockPanel>

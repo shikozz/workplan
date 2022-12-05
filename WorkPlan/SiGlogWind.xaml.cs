@@ -65,7 +65,7 @@ namespace WorkPlan
                 if (User.Права == "ADMIN")
                 {
 
-                    MainWindow window = new MainWindow(User.ID_employee);
+                    MainWindow window = new MainWindow(User.ID_user);
                     window.Show();
                     Close();
                 }
@@ -73,7 +73,7 @@ namespace WorkPlan
                 {
                     if (User.Права == "WORKER")
                     {
-                        User window = new User();
+                        MainWindow window = new MainWindow(User.ID_user);
                         window.Show();
                         Close();
                     }

@@ -20,15 +20,60 @@ namespace WorkPlan.Pages
     /// </summary>
     public partial class MainFrame : Page
     {
-        public MainFrame(int role)
+        int role = 0;
+        private Window mainWindow;
+        private double _width;
+        public MainFrame(int roleN, double width, double height, Window MainWindow)
         {
             InitializeComponent();
+            role = roleN;
+            mainWindow = MainWindow;
+            _width = width;
+            //redraw(width);
+            //mainWindow.wid
+        }
+        public void redraw(double width)
+        {
+            double widthneed = ((MainWindow)Window.GetWindow(this)).widthNow();
+            btnLight.Width = widthneed * 0.3;
+            btnLight.Height = widthneed * 0.3;
+            btnLight1.Width = widthneed * 0.3;
+            btnLight1.Height = widthneed * 0.3;
+            btnLight.Margin = new Thickness(0,0,btnLight.Width*0.3,0);
+            btnLight1.Margin = new Thickness(btnLight1.Width*0.3,0,0,0);
         }
 
         private void btnLight_Click(object sender, RoutedEventArgs e)
         {
-            Goods goods = new Goods();
-            NavigationService.Navigate(goods);
+            if (role == 700)
+            {
+                Goods goods = new Goods();
+                NavigationService.Navigate(goods);
+            }
+            else 
+            {
+                userGoods uGoods = new userGoods(role);
+                NavigationService.Navigate(uGoods);
+            }
+        }
+
+        private void btnLight1_Click(object sender, RoutedEventArgs e)
+        {
+            if (role == 700)
+            {
+                Applications apps = new Applications();
+                NavigationService.Navigate(apps);
+            }
+            else
+            {
+                userApps uApps = new userApps(role);
+                NavigationService.Navigate(uApps);
+            }
+        }
+
+        private void Grid_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            redraw(_width);
         }
     }
 }
