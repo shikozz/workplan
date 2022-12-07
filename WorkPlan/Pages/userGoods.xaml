@@ -9,7 +9,13 @@
       Title="Goods">
 
     <Grid KeyDown="OnKeyDownHandler">
-        <DataGrid IsReadOnly="True" AutoGenerateColumns="False" x:Name="GoodsGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <TextBox Foreground="Gray" Text="Введите название товара" x:Name="filterText" HorizontalAlignment="Left" Margin="5" Grid.Row="0" Height="20" Width="200" TextChanged="filterText_TextChanged" GotFocus="filterText_GotFocus" LostFocus="filterText_LostFocus"></TextBox>
+        <DataGrid Grid.Row="1" Grid.RowSpan="2" IsReadOnly="True" AutoGenerateColumns="False" x:Name="GoodsGrid">
             <DataGrid.CellStyle>
                 <Style TargetType="DataGridCell" >
                     <Setter Property="Background" Value="AliceBlue"/>

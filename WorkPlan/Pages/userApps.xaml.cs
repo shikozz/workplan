@@ -83,5 +83,6 @@ namespace WorkPlan.Pages
                 MessageBox.Show("Вы не можете удалить принятую заявку!");
             }
         }
+
     }
 }

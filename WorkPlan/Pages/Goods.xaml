@@ -10,10 +10,12 @@
 
     <Grid KeyDown="OnKeyDownHandler">
         <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
-            <DataGrid Grid.Row="0" IsReadOnly="True" AutoGenerateColumns="False" x:Name="GoodsGrid">
+        <TextBox Foreground="Gray" Text="Введите название товара" x:Name="filterText" HorizontalAlignment="Left" Margin="5" Grid.Row="0" Height="20" Width="200" TextChanged="filterText_TextChanged" GotFocus="filterText_GotFocus" LostFocus="filterText_LostFocus"></TextBox>
+            <DataGrid Grid.Row="1" IsReadOnly="True" AutoGenerateColumns="False" x:Name="GoodsGrid">
             <DataGrid.CellStyle>
                 <Style TargetType="DataGridCell">
                     <Setter Property="Background" Value="AliceBlue"/>
@@ -44,7 +46,7 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <StackPanel Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center" Orientation="Horizontal">
+        <StackPanel Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Center" Orientation="Horizontal">
             <Label FontFamily="Inder" FontSize="20" Height="30" Content="Добавить новое..."/>
             <Button Content="Добавить новое..." Width="50" Height="50" Margin="0,0,20,0" Click="addNewGood">
                 <Button.Template>

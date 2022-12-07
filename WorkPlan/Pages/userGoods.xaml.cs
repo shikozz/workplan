@@ -55,5 +55,31 @@ namespace WorkPlan.Pages
         {
 
         }
+        private void filterText_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var textbox = sender as TextBox;
+            if (textbox.Text != "Введите название товара")
+            {
+                GoodsGrid.ItemsSource = SourceCore.MyBase.Goods.Where(Q => Q.Название.Contains(textbox.Text)).ToList();
+            }
+        }
+
+        private void filterText_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (filterText.Text == "Введите название товара")
+            {
+                filterText.Text = "";
+                filterText.Foreground = new SolidColorBrush(Colors.Black);
+            }
+        }
+
+        private void filterText_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (filterText.Text == "")
+            {
+                filterText.Text = "Введите название товара";
+                filterText.Foreground = new SolidColorBrush(Colors.Gray);
+            }
+        }
     }
 }

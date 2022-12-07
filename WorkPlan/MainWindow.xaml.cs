@@ -40,11 +40,19 @@ namespace WorkPlan
 
         public void getName(int Role) 
         {
-            userButton.Content = "Выход";
+            userButton.Content = "Выйти из аккаунта";
             Base.Users User = DataBase.Users.SingleOrDefault(U => U.ID_user == Role);
             int emcode = User.ID_employee;
             Base.Employee Employee = DataBase.Employee.SingleOrDefault(U => U.ID_employee == emcode);
-            text.Text = Employee.ФИО+" - "+User.Права;
+            Base.Departments dep = DataBase.Departments.SingleOrDefault(u => u.ID_deprtment == Employee.ID_department);
+            if (User.Права == "ADMIN") 
+            {
+                text.Text = Employee.ФИО + " - " + User.Права;
+            }
+            else
+            {
+                text.Text = Employee.ФИО + "\n" + dep.Название;
+            }
         }
 
         public void navigation(int role) 
@@ -117,23 +125,32 @@ namespace WorkPlan
             {
                 this.Width = 700;
                 this.Height = 500;
-                
+              // WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
+
             }
             if (sizeCombo.SelectedItem.ToString() == "150%") 
             {
                 this.Width = 1050;
                 this.Height = 750;
+               // WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             }
             if (sizeCombo.SelectedItem.ToString() == "200%")
             {
                 this.Width = 1400;
                 this.Height = 1000;
+                //WindowStartupLocation = System.Windows.WindowStartupLocation.CenterOwner;
+               // WindowStartupLocation.Manual = 0;
             }
         }
 
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
         {
+           // WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
+        }
 
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            this.DragMove();
         }
     }
 }

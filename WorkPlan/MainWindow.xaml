@@ -9,7 +9,8 @@
         WindowStyle="None"
         WindowStartupLocation="Manual"
         AllowsTransparency="True"
-        Background="Transparent" SizeChanged="Window_SizeChanged">
+        Background="Transparent" SizeChanged="Window_SizeChanged"
+        MouseDown="Window_MouseDown">
     <Border CornerRadius="50,0,50,50" BorderThickness="10">
         <Border.BorderBrush>
             <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
@@ -28,7 +29,7 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="120"/>
                     <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="110"/>
+                    <ColumnDefinition Width="150"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="50"/>
@@ -81,21 +82,23 @@
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
-                    <Button Background="Transparent" FontStretch="Expanded" x:Name="userButton" DockPanel.Dock="Right" Content="Выход" Width="60" Height="42" Margin="0,0,4,0"  Click="userButton_Click"/>
+                    <Button Background="Transparent" FontSize="10" HorizontalAlignment="Center" FontStretch="Expanded" x:Name="userButton" DockPanel.Dock="Right" Content="Выйти из аккаунта" Width="100" Height="30" Margin="0,0,4,0"  Click="userButton_Click"/>
                    
                     
                 </DockPanel>
                 <DockPanel Grid.Column="1" Grid.Row="0" Background="LightBlue">
-                    <TextBox BorderThickness="0" IsReadOnly="True"  HorizontalAlignment="Right" MinWidth="0" Height="20" FontFamily="Inder" Background="LightBlue" x:Name="text" Text=""></TextBox>
+                    <TextBox BorderThickness="0" IsReadOnly="True" VerticalAlignment="Center"  HorizontalAlignment="Right" MinWidth="0" FontFamily="Inder" Background="LightBlue" x:Name="text" Text=""></TextBox>
                 </DockPanel>
                 <DockPanel Grid.Column="0" Grid.Row="2" Background="LightBlue"/>
                 <DockPanel Grid.Column="1" Grid.Row="2" Background="LightBlue">
                     <StackPanel Grid.Column="0" Grid.Row="3" HorizontalAlignment="Center" Orientation="Horizontal" VerticalAlignment="Bottom">
-                        <Button BorderBrush="AliceBlue" Content="Домой" Width="80" Height="36" Click="gohome"/>
+                        <Button BorderBrush="AliceBlue" Content="На главный экран" Width="120" Height="36" Click="gohome"/>
                     </StackPanel>
                 </DockPanel>
-                <DockPanel Grid.Column="2" Grid.Row="2" Background="LightBlue">
-                    <ComboBox x:Name="sizeCombo" Height="30" Width="100" SelectionChanged="sizeCombo_SelectionChanged" />
+                <DockPanel Grid.Column="2" Grid.Row="2" Background="LightBlue"></DockPanel>
+                <DockPanel Grid.Column="2" VerticalAlignment="Center"  Grid.Row="2" Background="LightBlue">
+                    <Label >Масштаб</Label>
+                    <ComboBox x:Name="sizeCombo" Height="30" Width="90" SelectionChanged="sizeCombo_SelectionChanged" />
                 </DockPanel>
                 <Frame x:Name="RootFrame" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" NavigationUIVisibility="Hidden" Background="AliceBlue"/>
             </Grid>

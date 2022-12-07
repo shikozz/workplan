@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Forms;
 using System.Collections.ObjectModel;
+using TextBox = System.Windows.Controls.TextBox;
 
 namespace WorkPlan.Pages
 {
@@ -47,15 +48,17 @@ namespace WorkPlan.Pages
         private void GoToApplications(object sender, RoutedEventArgs e)
         {
             //here we will delete application
-            if (System.Windows.MessageBox.Show("Удалить запись?", "Внимание", MessageBoxButton.OKCancel, MessageBoxImage.Warning) == MessageBoxResult.OK)
+            try
             {
-                SourceCore.MyBase.Goods.Remove((Base.Goods)GoodsGrid.SelectedItem);
-               // SourceCore.MyBase.Entry((Base.Goods)GoodsGrid.SelectedItem).State = EntityState.Deleted;
-                SourceCore.MyBase.SaveChanges();
-                UpdateGrid(null);
-
+                if (System.Windows.MessageBox.Show("Удалить запись?", "Внимание", MessageBoxButton.OKCancel, MessageBoxImage.Warning) == MessageBoxResult.OK)
+                {
+                    SourceCore.MyBase.Goods.Remove((Base.Goods)GoodsGrid.SelectedItem);
+                    // SourceCore.MyBase.Entry((Base.Goods)GoodsGrid.SelectedItem).State = EntityState.Deleted;
+                    SourceCore.MyBase.SaveChanges();
+                    UpdateGrid(null);
+                }
             }
-
+            catch { System.Windows.MessageBox.Show("Вы не можете удалить товар, который в настоящий момент учавствует в заявке пользователя!"); }
         }
         private void OnKeyDownHandler(object sender, System.Windows.Input.KeyEventArgs e)
         {
@@ -68,6 +71,33 @@ namespace WorkPlan.Pages
         {
             AddGood newWindow = new AddGood(this);
             newWindow.ShowDialog();
+        }
+
+        private void filterText_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var textbox = sender as TextBox;
+            if (textbox.Text != "Введите название товара")
+            {
+                GoodsGrid.ItemsSource = SourceCore.MyBase.Goods.Where(Q => Q.Название.Contains(textbox.Text)).ToList();
+            }
+        }
+
+        private void filterText_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (filterText.Text == "Введите название товара")
+            {
+                filterText.Text = "";
+                filterText.Foreground = new SolidColorBrush(Colors.Black);
+            }
+        }
+
+        private void filterText_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (filterText.Text == "")
+            {
+                filterText.Text = "Введите название товара";
+                filterText.Foreground = new SolidColorBrush(Colors.Gray);
+            }
         }
     }
 }
