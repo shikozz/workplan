@@ -39,5 +39,8 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+        <Style TargetType="Window">
+            <Setter Property="Icon" Value="Pictures/icon.jpg"/>
+        </Style>
     </Application.Resources>
 </Application>

@@ -10,7 +10,8 @@
         WindowStyle="None"
         AllowsTransparency="True"
         WindowStartupLocation="CenterScreen"
-        Background="Transparent">
+        Background="Transparent"
+        Icon="Pictures/icon.jpg">
     <Border CornerRadius="50,0,50,50" BorderThickness="10">
         <Border.BorderBrush>
             <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
