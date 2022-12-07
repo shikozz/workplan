@@ -10,8 +10,7 @@
         WindowStartupLocation="Manual"
         AllowsTransparency="True"
         Background="Transparent" SizeChanged="Window_SizeChanged"
-        MouseDown="Window_MouseDown"
-        Icon="Pictures/icon.jpg">
+        MouseDown="Window_MouseDown">
     <Border CornerRadius="50,0,50,50" BorderThickness="10">
         <Border.BorderBrush>
             <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">

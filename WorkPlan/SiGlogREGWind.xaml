@@ -10,8 +10,7 @@
         WindowStyle="None"
         AllowsTransparency="True"
         WindowStartupLocation="CenterScreen"
-        Background="Transparent"
-        Icon="Pictures/icon.jpg">
+        Background="Transparent">
 
     <Border CornerRadius="50,0,50,50" BorderThickness="10">
         <Border.BorderBrush>
