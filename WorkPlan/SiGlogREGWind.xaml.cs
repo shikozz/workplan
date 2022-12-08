@@ -22,10 +22,10 @@ namespace WorkPlan
     /// </summary>
     public partial class SiGlogREGWind : Window
     {
-        private Base.Entities DataBase;
+        private Base.wpEntities DataBase;
         public Border myBorder;
 
-        public SiGlogREGWind(Base.Entities DataBase)
+        public SiGlogREGWind(Base.wpEntities DataBase)
         {
         
             InitializeComponent();

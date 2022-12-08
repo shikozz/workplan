@@ -22,7 +22,7 @@ namespace WorkPlan
     public partial class MainWindow : Window
     {
 
-        private Base.Entities DataBase;
+        private Base.wpEntities DataBase;
         public Base.Users User { get; set; }
         public Base.Employee Employee { get; set; }
         int roleNum = 0;
@@ -42,9 +42,9 @@ namespace WorkPlan
         {
             userButton.Content = "Выйти из аккаунта";
             Base.Users User = DataBase.Users.SingleOrDefault(U => U.ID_user == Role);
-            int emcode = User.ID_employee;
+            int emcode = Convert.ToInt32(User.ID_employee);
             Base.Employee Employee = DataBase.Employee.SingleOrDefault(U => U.ID_employee == emcode);
-            Base.Departments dep = DataBase.Departments.SingleOrDefault(u => u.ID_deprtment == Employee.ID_department);
+            Base.Departments dep = DataBase.Departments.SingleOrDefault(u => u.ID_department == Employee.ID_department);
             if (User.Права == "ADMIN") 
             {
                 text.Text = Employee.ФИО + " - " + User.Права;
@@ -59,7 +59,7 @@ namespace WorkPlan
         {
             try
             {
-                DataBase = new Base.Entities();
+                DataBase = new Base.wpEntities();
                 //GetBase64ImageFromDb();
             }
             catch

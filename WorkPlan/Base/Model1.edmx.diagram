@@ -4,22 +4,19 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="2265770acb47444fba53278fbfc1beb3" Name="Diagram1" ZoomLevel="109">
-        <EntityTypeShape EntityType="Model.Applications" Width="1.5" PointX="6" PointY="3.5" />
-        <EntityTypeShape EntityType="Model.Departments" Width="1.5" PointX="3.75" PointY="3.875" />
-        <EntityTypeShape EntityType="Model.Employee" Width="1.5" PointX="6" PointY="7.25" />
-        <EntityTypeShape EntityType="Model.Goods" Width="1.5" PointX="3.75" PointY="7.125" />
-        <EntityTypeShape EntityType="Model.MainPlan" Width="1.5" PointX="8.25" PointY="3.875" />
-        <EntityTypeShape EntityType="Model.pictures" Width="1.5" PointX="0.75" PointY="1.625" />
-        <EntityTypeShape EntityType="Model.Status" Width="1.5" PointX="3.75" PointY="0.75" />
-        <EntityTypeShape EntityType="Model.sysdiagrams" Width="1.5" PointX="0.75" PointY="4.625" />
-        <EntityTypeShape EntityType="Model.Users" Width="1.5" PointX="8.25" PointY="7.25" />
-        <AssociationConnector Association="Model.FK_Заявки_Отделы" />
-        <AssociationConnector Association="Model.FK_Заявки_Статус_заявки" />
-        <AssociationConnector Association="Model.FK_Заявки_Товары" />
-        <AssociationConnector Association="Model.FK_План_график_Заявки" />
-        <AssociationConnector Association="Model.FK_Ответ__лицо_Ответ__лицо" />
-        <AssociationConnector Association="Model.FK_Пользователи_Ответ__лицо" />
+      <Diagram DiagramId="b5c47966459c4424b06e5f50d5b6b729" Name="Diagram1">
+        <EntityTypeShape EntityType="workplanModel.Applications" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="workplanModel.Departments" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="workplanModel.Employee" Width="1.5" PointX="3" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="workplanModel.Goods" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="workplanModel.Status" Width="1.5" PointX="0.75" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="workplanModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="workplanModel.Users" Width="1.5" PointX="5.25" PointY="7" IsExpanded="true" />
+        <AssociationConnector Association="workplanModel.FK_Applications_Departments" ManuallyRouted="false" />
+        <AssociationConnector Association="workplanModel.FK_Applications_Goods" ManuallyRouted="false" />
+        <AssociationConnector Association="workplanModel.FK_Applications_Status" ManuallyRouted="false" />
+        <AssociationConnector Association="workplanModel.FK_Employee_Departments" ManuallyRouted="false" />
+        <AssociationConnector Association="workplanModel.FK_Users_Employee" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

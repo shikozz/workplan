@@ -23,15 +23,16 @@ namespace WorkPlan.Pages
     {
         private int roleN = 0;
         private Base.Applications SelectedApp;
-        public Base.Entities DataBase;
+        public Base.wpEntities DataBase;
         public userApps(int roleID)
         {
             InitializeComponent();
             DataContext = this;
-            DataBase = new Base.Entities();
+            DataBase = new Base.wpEntities();
             roleN = roleID;
             //GoodsGrid.ItemsSource = SourceCore.MyBase.Goods.ToList();
             UpdateGrid(null);
+            AppGrid.UpdateLayout();
         }
         public void UpdateGrid(Base.Applications application)
         {
@@ -55,7 +56,7 @@ namespace WorkPlan.Pages
         private void GoToApplications(object sender, RoutedEventArgs e)
         {
             SelectedApp = (Base.Applications)AppGrid.SelectedItem;
-            if (SelectedApp.ID_status != 401)
+            if (SelectedApp.ID_status != 951)
             {
                 castRedact newWindow = new castRedact(SelectedApp, this);
                 newWindow.ShowDialog();
@@ -69,7 +70,7 @@ namespace WorkPlan.Pages
         private void delete(object sender, RoutedEventArgs e)
         {
             SelectedApp = (Base.Applications)AppGrid.SelectedItem;
-            if (SelectedApp.ID_status != 401)
+            if (SelectedApp.ID_status != 951)
             {
                 if (System.Windows.MessageBox.Show("Удалить запись?", "Внимание", MessageBoxButton.OKCancel, MessageBoxImage.Warning) == MessageBoxResult.OK)
                 {

@@ -23,14 +23,14 @@ namespace WorkPlan
     /// </summary>
     public partial class SiGlogWind : Window
     {
-        private Base.Entities DataBase;
+        private Base.wpEntities DataBase;
 
         public SiGlogWind()
         {
             InitializeComponent();
             try
             {
-                DataBase = new Base.Entities();
+                DataBase = new Base.wpEntities();
                 //GetBase64ImageFromDb();
                 //PutImageBase64InDb(@"D:\321.jpg");  
             }
@@ -95,25 +95,25 @@ namespace WorkPlan
 
         private void PutImageBase64InDb(string iFile) 
         {
-            string base64 = Convert.ToBase64String(File.ReadAllBytes(iFile));
-            Base.pictures newpic = new Base.pictures();
-            newpic.pic = base64;
-            DataBase.pictures.Add(newpic);
-            DataBase.SaveChanges();
+            //string base64 = Convert.ToBase64String(File.ReadAllBytes(iFile));
+            //Base.pictures newpic = new Base.pictures();
+            //newpic.pic = base64;
+            //DataBase.pictures.Add(newpic);
+            //DataBase.SaveChanges();
         }
         private  void GetBase64ImageFromDb()
         {
-            string base64FromDataBase = DataBase.pictures.SingleOrDefault(U => U.id_pic == 1902).pic;
+            //string base64FromDataBase = DataBase.pictures.SingleOrDefault(U => U.id_pic == 1902).pic;
            
-            byte[] imageBytes = Convert.FromBase64String(base64FromDataBase);
-            MemoryStream ms = new MemoryStream(imageBytes, 0, imageBytes.Length);
-            ms.Write(imageBytes, 0, imageBytes.Length);
-            System.Drawing.Image image = System.Drawing.Image.FromStream(ms, true);
+            //byte[] imageBytes = Convert.FromBase64String(base64FromDataBase);
+            //MemoryStream ms = new MemoryStream(imageBytes, 0, imageBytes.Length);
+            //ms.Write(imageBytes, 0, imageBytes.Length);
+            //System.Drawing.Image image = System.Drawing.Image.FromStream(ms, true);
 
-            //image.Save("321.jpg", ImageFormat.Jpeg);
+            ////image.Save("321.jpg", ImageFormat.Jpeg);
 
-            string iImageName = @"D:\4IS2\Lebedev\WorkPlan\WorkPlan\Pictures\goods" + "." + "png";
-            image.Save(iImageName, System.Drawing.Imaging.ImageFormat.Png);
+            //string iImageName = @"D:\4IS2\Lebedev\WorkPlan\WorkPlan\Pictures\goods" + "." + "png";
+            //image.Save(iImageName, System.Drawing.Imaging.ImageFormat.Png);
         }
 
 

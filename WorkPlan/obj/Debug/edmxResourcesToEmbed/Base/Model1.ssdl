@@ -1,22 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="Хранилище workplanModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="Applications">
     <Key>
       <PropertyRef Name="ID_application" />
     </Key>
     <Property Name="ID_application" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="ID_goods" Type="int" Nullable="false" />
-    <Property Name="Количество" Type="nvarchar" MaxLength="50" />
-    <Property Name="ID_status" Type="int" Nullable="false" />
-    <Property Name="ID_department" Type="int" Nullable="false" />
+    <Property Name="ID_goods" Type="int" />
+    <Property Name="Количество" Type="int" />
+    <Property Name="ID_status" Type="int" />
+    <Property Name="ID_department" Type="int" />
   </EntityType>
   <EntityType Name="Departments">
     <Key>
-      <PropertyRef Name="ID_deprtment" />
+      <PropertyRef Name="ID_department" />
     </Key>
-    <Property Name="ID_deprtment" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_department" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Название" Type="nvarchar" MaxLength="50" />
-    <Property Name="Кол-во сотрудников" Type="int" />
+    <Property Name="Кол_во_сотрудников" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="Employee">
     <Key>
@@ -25,7 +25,7 @@
     <Property Name="ID_employee" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="ФИО" Type="nvarchar" MaxLength="50" />
     <Property Name="Должность" Type="nvarchar" MaxLength="50" />
-    <Property Name="ID_department" Type="int" Nullable="false" />
+    <Property Name="ID_department" Type="int" />
   </EntityType>
   <EntityType Name="Goods">
     <Key>
@@ -34,23 +34,6 @@
     <Property Name="ID_goods" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Название" Type="nvarchar" MaxLength="50" />
     <Property Name="Цена" Type="money" />
-  </EntityType>
-  <EntityType Name="MainPlan">
-    <Key>
-      <PropertyRef Name="ID_inplan" />
-    </Key>
-    <Property Name="ID_inplan" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="ID_application" Type="int" Nullable="false" />
-    <Property Name="Дата утверждения" Type="date" />
-    <Property Name="Год исполнения" Type="nchar" MaxLength="10" />
-  </EntityType>
-  <EntityType Name="pictures">
-    <Key>
-      <PropertyRef Name="id_pic" />
-    </Key>
-    <Property Name="id_pic" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="pic" Type="nvarchar(max)" />
-    <Property Name="info" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="Status">
     <Key>
@@ -76,35 +59,23 @@
     <Property Name="ID_user" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Логин" Type="nvarchar" MaxLength="50" />
     <Property Name="Пароль" Type="nvarchar" MaxLength="50" />
-    <Property Name="ID_employee" Type="int" Nullable="false" />
+    <Property Name="ID_employee" Type="int" />
     <Property Name="Права" Type="nvarchar" MaxLength="50" />
   </EntityType>
-  <Association Name="FK_Заявки_Отделы">
-    <End Role="Departments" Type="Self.Departments" Multiplicity="1" />
+  <Association Name="FK_Applications_Departments">
+    <End Role="Departments" Type="Self.Departments" Multiplicity="0..1" />
     <End Role="Applications" Type="Self.Applications" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Departments">
-        <PropertyRef Name="ID_deprtment" />
+        <PropertyRef Name="ID_department" />
       </Principal>
       <Dependent Role="Applications">
         <PropertyRef Name="ID_department" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Заявки_Статус заявки">
-    <End Role="Status" Type="Self.Status" Multiplicity="1" />
-    <End Role="Applications" Type="Self.Applications" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Status">
-        <PropertyRef Name="ID_status" />
-      </Principal>
-      <Dependent Role="Applications">
-        <PropertyRef Name="ID_status" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Заявки_Товары">
-    <End Role="Goods" Type="Self.Goods" Multiplicity="1" />
+  <Association Name="FK_Applications_Goods">
+    <End Role="Goods" Type="Self.Goods" Multiplicity="0..1" />
     <End Role="Applications" Type="Self.Applications" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Goods">
@@ -115,32 +86,32 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Ответ_ лицо_Ответ_ лицо">
-    <End Role="Departments" Type="Self.Departments" Multiplicity="1" />
+  <Association Name="FK_Applications_Status">
+    <End Role="Status" Type="Self.Status" Multiplicity="0..1" />
+    <End Role="Applications" Type="Self.Applications" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Status">
+        <PropertyRef Name="ID_status" />
+      </Principal>
+      <Dependent Role="Applications">
+        <PropertyRef Name="ID_status" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employee_Departments">
+    <End Role="Departments" Type="Self.Departments" Multiplicity="0..1" />
     <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Departments">
-        <PropertyRef Name="ID_deprtment" />
+        <PropertyRef Name="ID_department" />
       </Principal>
       <Dependent Role="Employee">
         <PropertyRef Name="ID_department" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_План-график_Заявки">
-    <End Role="Applications" Type="Self.Applications" Multiplicity="1" />
-    <End Role="MainPlan" Type="Self.MainPlan" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Applications">
-        <PropertyRef Name="ID_application" />
-      </Principal>
-      <Dependent Role="MainPlan">
-        <PropertyRef Name="ID_application" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Пользователи_Ответ_ лицо">
-    <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+  <Association Name="FK_Users_Employee">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
     <End Role="Users" Type="Self.Users" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Employee">
@@ -151,37 +122,31 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="ModelStoreContainer">
+  <EntityContainer Name="Хранилище workplanModelContainer">
     <EntitySet Name="Applications" EntityType="Self.Applications" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Departments" EntityType="Self.Departments" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Goods" EntityType="Self.Goods" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="MainPlan" EntityType="Self.MainPlan" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="pictures" EntityType="Self.pictures" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK_Заявки_Отделы" Association="Self.FK_Заявки_Отделы">
+    <AssociationSet Name="FK_Applications_Departments" Association="Self.FK_Applications_Departments">
       <End Role="Departments" EntitySet="Departments" />
       <End Role="Applications" EntitySet="Applications" />
     </AssociationSet>
-    <AssociationSet Name="FK_Заявки_Статус заявки" Association="Self.FK_Заявки_Статус заявки">
-      <End Role="Status" EntitySet="Status" />
-      <End Role="Applications" EntitySet="Applications" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Заявки_Товары" Association="Self.FK_Заявки_Товары">
+    <AssociationSet Name="FK_Applications_Goods" Association="Self.FK_Applications_Goods">
       <End Role="Goods" EntitySet="Goods" />
       <End Role="Applications" EntitySet="Applications" />
     </AssociationSet>
-    <AssociationSet Name="FK_Ответ_ лицо_Ответ_ лицо" Association="Self.FK_Ответ_ лицо_Ответ_ лицо">
+    <AssociationSet Name="FK_Applications_Status" Association="Self.FK_Applications_Status">
+      <End Role="Status" EntitySet="Status" />
+      <End Role="Applications" EntitySet="Applications" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employee_Departments" Association="Self.FK_Employee_Departments">
       <End Role="Departments" EntitySet="Departments" />
       <End Role="Employee" EntitySet="Employee" />
     </AssociationSet>
-    <AssociationSet Name="FK_План-график_Заявки" Association="Self.FK_План-график_Заявки">
-      <End Role="Applications" EntitySet="Applications" />
-      <End Role="MainPlan" EntitySet="MainPlan" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Пользователи_Ответ_ лицо" Association="Self.FK_Пользователи_Ответ_ лицо">
+    <AssociationSet Name="FK_Users_Employee" Association="Self.FK_Users_Employee">
       <End Role="Employee" EntitySet="Employee" />
       <End Role="Users" EntitySet="Users" />
     </AssociationSet>

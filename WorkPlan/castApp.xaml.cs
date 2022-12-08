@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -21,7 +22,7 @@ namespace WorkPlan
     {
         private Pages.userGoods goodsPage;
         private Base.Goods selectedGood;
-        private Base.Entities DataBase;
+        private Base.wpEntities DataBase;
         private int roleN;
         public castApp(Base.Goods SelectedGood, Pages.userGoods GoodsPage, int roleID)
         {
@@ -30,7 +31,7 @@ namespace WorkPlan
             selectedGood = SelectedGood;
             goodsPage = GoodsPage;
             roleN = roleID;
-            DataBase = new Base.Entities();
+            DataBase = new Base.wpEntities();
             init();
         }
 
@@ -38,7 +39,7 @@ namespace WorkPlan
         {
             Base.Users setUsers = DataBase.Users.SingleOrDefault(U => U.ID_user == roleN);
             Base.Employee setEmp = DataBase.Employee.SingleOrDefault(U => U.ID_employee == setUsers.ID_employee);
-            Base.Departments setDep = DataBase.Departments.SingleOrDefault(U => U.ID_deprtment == setEmp.ID_department);
+            Base.Departments setDep = DataBase.Departments.SingleOrDefault(U => U.ID_department == setEmp.ID_department);
             nametext.Text = selectedGood.Название;
             amounttext.Text = "0";
             deptext.Text = setDep.Название;
@@ -51,8 +52,8 @@ namespace WorkPlan
             Base.Employee setEmp = DataBase.Employee.SingleOrDefault(U => U.ID_employee == setUsers.ID_employee);
             newApp.ID_goods = selectedGood.ID_goods;
             newApp.ID_department = setEmp.ID_department;
-            newApp.ID_status = 400;
-            newApp.Количество = amounttext.Text;
+            newApp.ID_status = 950;
+            newApp.Количество = Convert.ToInt32(amounttext.Text);
             SourceCore.MyBase.Applications.Add(newApp);
             SourceCore.MyBase.SaveChanges();
             Close();
