@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using System.Windows.Forms;
 using System.Collections.ObjectModel;
 using TextBox = System.Windows.Controls.TextBox;
+using System.Data.Entity;
 
 namespace WorkPlan.Pages
 {
@@ -23,12 +24,15 @@ namespace WorkPlan.Pages
     /// </summary>
     public partial class Goods : Page
     {
+        Base.wpEntities DataBase;
+        private Base.Goods SelectedApp;
         public Goods()
         {
             InitializeComponent();
             DataContext = this;
             //GoodsGrid.ItemsSource = SourceCore.MyBase.Goods.ToList();
             UpdateGrid(null);
+            DataBase = new Base.wpEntities();
         }
 
         public void UpdateGrid(Base.Goods Good)
@@ -50,12 +54,21 @@ namespace WorkPlan.Pages
             //here we will delete application
             try
             {
+                SelectedApp = (Base.Goods)GoodsGrid.SelectedItem;
+                Base.Applications checkApps = DataBase.Applications.SingleOrDefault(q => q.ID_goods == SelectedApp.ID_goods);
                 if (System.Windows.MessageBox.Show("Удалить запись?", "Внимание", MessageBoxButton.OKCancel, MessageBoxImage.Warning) == MessageBoxResult.OK)
                 {
-                    SourceCore.MyBase.Goods.Remove((Base.Goods)GoodsGrid.SelectedItem);
-                    // SourceCore.MyBase.Entry((Base.Goods)GoodsGrid.SelectedItem).State = EntityState.Deleted;
-                    SourceCore.MyBase.SaveChanges();
-                    UpdateGrid(null);
+                    if (checkApps == null)
+                    {
+                        SourceCore.MyBase.Goods.Remove((Base.Goods)GoodsGrid.SelectedItem);
+                        // SourceCore.MyBase.Entry((Base.Goods)GoodsGrid.SelectedItem).State = EntityState.Deleted;
+                        SourceCore.MyBase.SaveChanges();
+                        UpdateGrid(null);
+                    }
+                    else 
+                    {
+                        System.Windows.MessageBox.Show("Вы не можете удалить товар, который в настоящий момент учавствует в заявке пользователя!");
+                    }
                 }
             }
             catch { System.Windows.MessageBox.Show("Вы не можете удалить товар, который в настоящий момент учавствует в заявке пользователя!"); }

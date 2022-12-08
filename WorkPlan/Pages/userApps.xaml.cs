@@ -32,7 +32,7 @@ namespace WorkPlan.Pages
             roleN = roleID;
             //GoodsGrid.ItemsSource = SourceCore.MyBase.Goods.ToList();
             UpdateGrid(null);
-            AppGrid.UpdateLayout();
+            //AppGrid.UpdateLayout();
         }
         public void UpdateGrid(Base.Applications application)
         {
@@ -46,6 +46,7 @@ namespace WorkPlan.Pages
             new ObservableCollection<Base.Applications>(SourceCore.MyBase.Applications.Where(U => U.ID_department == setEmp.ID_department).ToList());
             AppGrid.ItemsSource = applications;
             AppGrid.SelectedItem = application;
+            AppGrid.UpdateLayout();
         }
 
         private void OnKeyDownHandler(object sender, KeyEventArgs e)

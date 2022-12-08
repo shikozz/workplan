@@ -31,7 +31,23 @@ namespace WorkPlan.Pages
             _width = width;
             //redraw(width);
             //mainWindow.wid
+            init(role);
         }
+
+        public void init(int role)
+        {
+            if (role == 700)
+            {
+                goods.Content = "Все товары";
+                apps.Content = "Все заявки";
+            }
+            else
+            {
+                goods.Content = "Все товары";
+                apps.Content = "Мои заявки";
+            }
+        }
+
         public void redraw(double width)
         {
             double widthneed = ((MainWindow)Window.GetWindow(this)).widthNow();
@@ -39,8 +55,10 @@ namespace WorkPlan.Pages
             btnLight.Height = widthneed * 0.3;
             btnLight1.Width = widthneed * 0.3;
             btnLight1.Height = widthneed * 0.3;
-            btnLight.Margin = new Thickness(0,0,btnLight.Width*0.3,0);
-            btnLight1.Margin = new Thickness(btnLight1.Width*0.3,0,0,0);
+            leftPanel.Margin = new Thickness(0, 0, btnLight.Width * 0.3, 0);
+            rigthPanel.Margin = new Thickness(btnLight1.Width * 0.3, 0, 0, 0);
+            goods.FontSize = Math.Round(widthneed * 0.05);
+            apps.FontSize = Math.Round(widthneed * 0.05);
         }
 
         private void btnLight_Click(object sender, RoutedEventArgs e)
@@ -50,7 +68,7 @@ namespace WorkPlan.Pages
                 Goods goods = new Goods();
                 NavigationService.Navigate(goods);
             }
-            else 
+            else
             {
                 userGoods uGoods = new userGoods(role);
                 NavigationService.Navigate(uGoods);
