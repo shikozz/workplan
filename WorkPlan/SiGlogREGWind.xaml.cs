@@ -13,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Text.RegularExpressions;
 
 namespace WorkPlan
 {
@@ -68,25 +69,31 @@ namespace WorkPlan
                 {
                     // Создание и инициализация нового пользователя системы
                     
-                    Base.Users User = new Base.Users();
-                   
-                    User.Логин = LoginTextBox.Text;
-                    User.Пароль = PasswordPasswordBox.Password != "" ? PasswordPasswordBox.Password : PasswordTextBox.Text;
-                    User.Права = "WORKER";
-                    int result = Int32.Parse(IDTextBox.Text);
-                    User.ID_employee = result;
-                    // Добавление его в базу данных
-                    DataBase.Users.Add(User);
-                   
-                    // Сохранение изменений
-                    DataBase.SaveChanges();
-                    SiGlogWind window = new SiGlogWind();
-                    Close();
-                    window.ShowDialog();
+                    string passwordstring = PasswordPasswordBox.Password != "" ? PasswordPasswordBox.Password : PasswordTextBox.Text; ;                   
+                    Regex validate = new Regex("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$");
+                    if (validate.IsMatch(passwordstring))
+                    {
+                        Base.Users User = new Base.Users();
+                        User.Логин = LoginTextBox.Text;
+                        User.Пароль = passwordstring;
+                        User.Права = "WORKER";
+                        int result = Int32.Parse(IDTextBox.Text);
+                        User.ID_employee = result;
+                        // Добавление его в базу данных
+                        DataBase.Users.Add(User);
+
+                        // Сохранение изменений
+                        DataBase.SaveChanges();
+                        SiGlogWind window = new SiGlogWind();
+                        Close();
+                        window.ShowDialog();
+                    } else
+                    {
+                        MessageBox.Show("Пожалуйста укажите пароль, используя не менее 1 заглавной и 1 строчной буквы латинского алфавита, не менее 1 цифры и общей длинной не менее 8 символов!", "Пердупреждение", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
                 }
                 catch {
                     MessageBox.Show("Неправильные данные","Пердупреждение", MessageBoxButton.OK, MessageBoxImage.Warning);
-
                 }
             }
             else {

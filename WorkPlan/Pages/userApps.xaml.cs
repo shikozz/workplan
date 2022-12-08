@@ -32,6 +32,7 @@ namespace WorkPlan.Pages
             roleN = roleID;
             //GoodsGrid.ItemsSource = SourceCore.MyBase.Goods.ToList();
             UpdateGrid(null);
+            AppGrid.UpdateLayout();
         }
         public void UpdateGrid(Base.Applications application)
         {

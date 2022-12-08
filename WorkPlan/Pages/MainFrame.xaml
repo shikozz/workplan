@@ -10,8 +10,9 @@
 
     <Grid Background="AliceBlue" SizeChanged="Grid_SizeChanged">
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left">
-                <Button x:Name="btnLight" Width="200" Height="200" Margin="0,0,100,0" Click="btnLight_Click">
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                <StackPanel x:Name="leftPanel" Margin="0,0,100,0">
+                <Button x:Name="btnLight" Width="200" Height="200" Click="btnLight_Click">
                     <Button.Template>
                         <ControlTemplate>
                             <Grid>
@@ -51,9 +52,12 @@
                         </ControlTemplate>
                     </Button.Template>
                 </Button>
+                <Label HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="goods" FontFamily="Inder" Foreground="Blue" Background="Transparent" FontSize="40">Yahoo!</Label>
             </StackPanel>
-            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Right">
-                <Button x:Name="btnLight1" Width="200" Height="200" Margin="100,0,0,0" Click="btnLight1_Click">
+            </StackPanel>
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                <StackPanel x:Name="rigthPanel" Margin="100,0,0,0">
+                    <Button x:Name="btnLight1" Width="200" Height="200" Click="btnLight1_Click">
                     <Button.Template>
                         <ControlTemplate>
                             <Grid>
@@ -93,6 +97,8 @@
                         </ControlTemplate>
                     </Button.Template>
                 </Button>
+                <Label HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="apps" FontFamily="Inder" Foreground="Blue" Background="Transparent" FontSize="40">Yahoo!</Label>
+            </StackPanel>
             </StackPanel>
         </StackPanel>
        
