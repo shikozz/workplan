@@ -105,7 +105,7 @@ namespace WorkPlan.Pages {
             case 3:
             
             #line 39 "..\..\..\Pages\Applications.xaml"
-            ((System.Windows.Controls.Button)(target)).Click += new System.Windows.RoutedEventHandler(this.GoToApplications);
+            ((System.Windows.Controls.Button)(target)).Click += new System.Windows.RoutedEventHandler(this.RedactApp);
             
             #line default
             #line hidden

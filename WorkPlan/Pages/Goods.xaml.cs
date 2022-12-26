@@ -30,7 +30,6 @@ namespace WorkPlan.Pages
         {
             InitializeComponent();
             DataContext = this;
-            //GoodsGrid.ItemsSource = SourceCore.MyBase.Goods.ToList();
             UpdateGrid(null);
             DataBase = new Base.wpEntities();
         }
@@ -49,9 +48,8 @@ namespace WorkPlan.Pages
         }
 
 
-        private void GoToApplications(object sender, RoutedEventArgs e)
+        private void DeleteGood(object sender, RoutedEventArgs e)
         {
-            //here we will delete application
             try
             {
                 SelectedApp = (Base.Goods)GoodsGrid.SelectedItem;
@@ -61,7 +59,6 @@ namespace WorkPlan.Pages
                     if (checkApps == null)
                     {
                         SourceCore.MyBase.Goods.Remove((Base.Goods)GoodsGrid.SelectedItem);
-                        // SourceCore.MyBase.Entry((Base.Goods)GoodsGrid.SelectedItem).State = EntityState.Deleted;
                         SourceCore.MyBase.SaveChanges();
                         UpdateGrid(null);
                     }

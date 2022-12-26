@@ -29,10 +29,10 @@ namespace WorkPlan
             SelectedApp = selectedItem;
             DataBase = new Base.wpEntities();
             appPage = AppPage;
-            init();
+            initAppRed();
         }
 
-        private void init() 
+        private void initAppRed() 
         {
             Base.Goods setGood = DataBase.Goods.SingleOrDefault(U => U.ID_goods == SelectedApp.ID_goods);
             Base.Status setStatus = DataBase.Status.SingleOrDefault(U => U.ID_status == SelectedApp.ID_status);
@@ -44,7 +44,7 @@ namespace WorkPlan
             combo.Text = setStatus.Статус;
         }
 
-        private void AuthorizationCommit_Click(object sender, RoutedEventArgs e)
+        private void AppRedactionClick(object sender, RoutedEventArgs e)
         {
             try
             {

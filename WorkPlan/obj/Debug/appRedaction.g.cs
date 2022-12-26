@@ -161,7 +161,7 @@ namespace WorkPlan {
             this.ApplicationCommit = ((System.Windows.Controls.Button)(target));
             
             #line 76 "..\..\appRedaction.xaml"
-            this.ApplicationCommit.Click += new System.Windows.RoutedEventHandler(this.AuthorizationCommit_Click);
+            this.ApplicationCommit.Click += new System.Windows.RoutedEventHandler(this.AppRedactionClick);
             
             #line default
             #line hidden

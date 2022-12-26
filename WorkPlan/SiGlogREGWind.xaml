@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WorkPlan"
         mc:Ignorable="d"
-        Title="Регистрация пользователя" Height="350" Width="400"
+        Title="Регистрация пользователя" Height="280" Width="400"
         ResizeMode="NoResize"
         WindowStyle="None"
         AllowsTransparency="True"
@@ -67,17 +67,19 @@
                  FontWeight="Heavy" Margin="5,20,0,0"
                  VerticalAlignment="Top" Width="202" TextDecorations="Strikethrough" 
                  FontStretch="UltraCondensed" IsReadOnly="True"></TextBox>
-                        <TextBox DockPanel.Dock="Top" FontFamily="Inder" x:Name="check" Margin="5,20,0,0" Height="15" Width="108" HorizontalAlignment="Left"></TextBox>
-
-                        <Button DockPanel.Dock="Top" FontFamily="Inder" Content="Показать КАПТЧУ" Height="33" HorizontalAlignment="Left" 
-                Margin="5,5,0,0" Name="button1" VerticalAlignment="Top" Width="108" Click="button1_Click" >
+                            <TextBox DockPanel.Dock="Top" FontFamily="Inder" x:Name="check" Margin="5,20,0,0" Height="15" 
+                                 Width="108" HorizontalAlignment="Left"></TextBox>
+                            <Button DockPanel.Dock="Top" FontFamily="Inder" Content="Показать КАПТЧУ" 
+                                    Height="33" HorizontalAlignment="Left" 
+                                    Margin="5,5,0,0" Name="button1" VerticalAlignment="Top"
+                                    Width="108" Click="CreateKAPCHA" >
                         </Button>
                         </DockPanel>
 
                         <DockPanel Height="25" Margin="0,14,0,0" LastChildFill="False" >
                             <Button FontFamily="Inder"  x:Name="OkButton" Content="Регистрация" Width="108" 
                             DockPanel.Dock="Right" TabIndex="3" IsDefault="True"
-                            Click="OkButton_Click"/>
+                            Click="DoReg"/>
                             <Button FontFamily="Inder" x:Name="CancelButton" Content="Отмена" Width="75"
                         DockPanel.Dock="Right" Margin="0,0,10,0" TabIndex="4"
                         IsCancel="True" Click="CancelButton_Click"/>

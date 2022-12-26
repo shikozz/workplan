@@ -40,7 +40,7 @@
                 <DataGridTemplateColumn x:Name="button_cell" CellStyle="{x:Null}">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button FontSize="15" Width="100" Height="30" Click="GoToApplications">УДАЛИТЬ</Button>
+                            <Button FontSize="15" Width="100" Height="30" Click="DeleteGood">УДАЛИТЬ</Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

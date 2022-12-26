@@ -68,7 +68,7 @@
                         </StackPanel>
                         <StackPanel Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom">
                             <Button FontFamily="Inder" x:Name="ApplicationCommit" Content="Подтвердить" Height="35" Width="100" Margin="15,15,15,15"
-                        Click="AuthorizationCommit_Click"/>
+                        Click="AddAPP"/>
                             <Button FontFamily="Inder" x:Name="ApplicationBack" Content="Отменить" Height="35" Width="100" Margin="15,15,15,15"
                             Click="AuthorizationRollBack_Click"/>
                         </StackPanel>

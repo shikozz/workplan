@@ -32,7 +32,7 @@ namespace WorkPlan
             {
                 DataBase = new Base.wpEntities();
                 //GetBase64ImageFromDb();
-                //PutImageBase64InDb(@"D:\321.jpg");  
+                //PutImageBase64InDb(@"");  
             }
             catch
             {
@@ -101,10 +101,10 @@ namespace WorkPlan
             //DataBase.pictures.Add(newpic);
             //DataBase.SaveChanges();
         }
-        private  void GetBase64ImageFromDb()
+        private void GetBase64ImageFromDb()
         {
             //string base64FromDataBase = DataBase.pictures.SingleOrDefault(U => U.id_pic == 1902).pic;
-           
+
             //byte[] imageBytes = Convert.FromBase64String(base64FromDataBase);
             //MemoryStream ms = new MemoryStream(imageBytes, 0, imageBytes.Length);
             //ms.Write(imageBytes, 0, imageBytes.Length);
@@ -114,22 +114,6 @@ namespace WorkPlan
 
             //string iImageName = @"D:\4IS2\Lebedev\WorkPlan\WorkPlan\Pictures\goods" + "." + "png";
             //image.Save(iImageName, System.Drawing.Imaging.ImageFormat.Png);
-        }
-
-
-        private void PasswordButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void CancelButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void OkButton_Click(object sender, RoutedEventArgs e)
-        {
-
         }
 
         private void RegistrationButton_Click(object sender, RoutedEventArgs e)

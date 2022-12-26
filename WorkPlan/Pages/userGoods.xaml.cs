@@ -50,11 +50,6 @@ namespace WorkPlan.Pages
             newWindow.ShowDialog();
 
         }
-
-        private void OnKeyDownHandler(object sender, KeyEventArgs e)
-        {
-
-        }
         private void filterText_TextChanged(object sender, TextChangedEventArgs e)
         {
             var textbox = sender as TextBox;

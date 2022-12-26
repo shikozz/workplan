@@ -60,7 +60,7 @@ namespace WorkPlan
 
         }
 
-        private void OkButton_Click(object sender, RoutedEventArgs e)
+        private void DoReg(object sender, RoutedEventArgs e)
         {
             check.Text = " " + check.Text;
             if (captcha.Text == check.Text)
@@ -106,7 +106,7 @@ namespace WorkPlan
             }
         }
 
-        private void button1_Click(object sender, RoutedEventArgs e)
+        private void CreateKAPCHA(object sender, RoutedEventArgs e)
         {
                 String allowchar = " ";
                 allowchar = "A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z";

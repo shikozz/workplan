@@ -30,9 +30,7 @@ namespace WorkPlan.Pages
             DataContext = this;
             DataBase = new Base.wpEntities();
             roleN = roleID;
-            //GoodsGrid.ItemsSource = SourceCore.MyBase.Goods.ToList();
             UpdateGrid(null);
-            //AppGrid.UpdateLayout();
         }
         public void UpdateGrid(Base.Applications application)
         {
@@ -49,12 +47,7 @@ namespace WorkPlan.Pages
             AppGrid.UpdateLayout();
         }
 
-        private void OnKeyDownHandler(object sender, KeyEventArgs e)
-        {
-
-        }
-
-        private void GoToApplications(object sender, RoutedEventArgs e)
+        private void RedactUserApp(object sender, RoutedEventArgs e)
         {
             SelectedApp = (Base.Applications)AppGrid.SelectedItem;
             if (SelectedApp.ID_status != 951)

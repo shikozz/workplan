@@ -26,7 +26,6 @@ namespace WorkPlan.Pages
         {
             InitializeComponent();
             DataContext = this;
-            //GoodsGrid.ItemsSource = SourceCore.MyBase.Goods.ToList();
             UpdateGrid(null);
         }
 
@@ -42,7 +41,7 @@ namespace WorkPlan.Pages
             AppGrid.ItemsSource = applications;
             AppGrid.SelectedItem = application;
         }
-        private void GoToApplications(object sender, RoutedEventArgs e)
+        private void RedactApp(object sender, RoutedEventArgs e)
         {
             SelectedApp = (Base.Applications)AppGrid.SelectedItem;
             appRedaction newWindow = new appRedaction(SelectedApp,this);
@@ -50,7 +49,6 @@ namespace WorkPlan.Pages
         }
         private void OnKeyDownHandler(object sender, System.Windows.Input.KeyEventArgs e)
         {
-            //????????????????????????HELP
             if (e.Key == Key.Escape)
             { NavigationService.GoBack(); }
         }

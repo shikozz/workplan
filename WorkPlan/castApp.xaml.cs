@@ -32,10 +32,10 @@ namespace WorkPlan
             goodsPage = GoodsPage;
             roleN = roleID;
             DataBase = new Base.wpEntities();
-            init();
+            initCastApp();
         }
 
-        private void init()
+        private void initCastApp()
         {
             Base.Users setUsers = DataBase.Users.SingleOrDefault(U => U.ID_user == roleN);
             Base.Employee setEmp = DataBase.Employee.SingleOrDefault(U => U.ID_employee == setUsers.ID_employee);
@@ -45,7 +45,7 @@ namespace WorkPlan
             deptext.Text = setDep.Название;
         }
 
-        private void AuthorizationCommit_Click(object sender, RoutedEventArgs e)
+        private void AddAPP(object sender, RoutedEventArgs e)
         {
             var newApp = new Base.Applications();
             Base.Users setUsers = DataBase.Users.SingleOrDefault(U => U.ID_user == roleN);

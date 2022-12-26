@@ -153,7 +153,7 @@ namespace WorkPlan.Pages {
             case 5:
             
             #line 43 "..\..\..\Pages\Goods.xaml"
-            ((System.Windows.Controls.Button)(target)).Click += new System.Windows.RoutedEventHandler(this.GoToApplications);
+            ((System.Windows.Controls.Button)(target)).Click += new System.Windows.RoutedEventHandler(this.DeleteGood);
             
             #line default
             #line hidden

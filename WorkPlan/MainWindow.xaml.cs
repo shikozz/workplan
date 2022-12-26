@@ -60,7 +60,6 @@ namespace WorkPlan
             try
             {
                 DataBase = new Base.wpEntities();
-                //GetBase64ImageFromDb();
             }
             catch
             {
@@ -74,7 +73,6 @@ namespace WorkPlan
 
         private void OnKeyDownHandler(object sender, KeyEventArgs e)
         {
-            //if (e.Key == Key.Escape) { Close();  }
             if (e.Key == Key.Escape)
             { navigation(roleNum); }
         }
@@ -112,12 +110,6 @@ namespace WorkPlan
             }
         }
 
-        private void Button_MouseEnter(object sender, MouseEventArgs e)
-        {
-            
-        }
-
-
 
         private void sizeCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -125,27 +117,18 @@ namespace WorkPlan
             {
                 this.Width = 700;
                 this.Height = 500;
-              // WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
 
             }
             if (sizeCombo.SelectedItem.ToString() == "150%") 
             {
                 this.Width = 1050;
                 this.Height = 750;
-               // WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             }
             if (sizeCombo.SelectedItem.ToString() == "200%")
             {
                 this.Width = 1400;
                 this.Height = 1000;
-                //WindowStartupLocation = System.Windows.WindowStartupLocation.CenterOwner;
-               // WindowStartupLocation.Manual = 0;
             }
-        }
-
-        private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
-        {
-           // WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)

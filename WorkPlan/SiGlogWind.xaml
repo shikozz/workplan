@@ -49,16 +49,24 @@
                             <RowDefinition Height="50"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        <Label FontFamily="Inder" Content="Логин" Margin="5,5,0,0" FontSize="16" Grid.Column="0" Grid.Row="0"/>
-                        <TextBox FontFamily="Inder" x:Name="LoginText" Padding="10,10,10,10" Margin="5,5,5,5" Grid.Column="1" Grid.Row="0" VerticalContentAlignment="Center"/>
-                        <Label FontFamily="Inder" Content="Пароль" Margin="5,5,0,0" FontSize="16" Grid.Column="0" Grid.Row="1"/>
-                        <PasswordBox FontFamily="Inder" x:Name="PasswordText" Padding="10,10,10,10" Margin="5,5,5,5" Grid.Column="1" Grid.Row="1" VerticalContentAlignment="Center"/>
-                        <StackPanel Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right">
-                            <Button FontFamily="Inder" x:Name="RegistrationButton" Content="Регистрация" Height="35" Width="100" Margin="15,15,15,0"
+                        <Label FontFamily="Inder" Content="Логин" Margin="5,5,0,0" FontSize="16"
+                               Grid.Column="0" Grid.Row="0"/>
+                        <TextBox FontFamily="Inder" x:Name="LoginText" Padding="10,10,10,10"
+                                 Margin="5,5,5,5" Grid.Column="1" Grid.Row="0" VerticalContentAlignment="Center"/>
+                        <Label FontFamily="Inder" Content="Пароль" Margin="5,5,0,0" FontSize="16" 
+                               Grid.Column="0" Grid.Row="1"/>
+                        <PasswordBox FontFamily="Inder" x:Name="PasswordText" Padding="10,10,10,10" 
+                                     Margin="5,5,5,5" Grid.Column="1" Grid.Row="1" VerticalContentAlignment="Center"/>
+                        <StackPanel Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Orientation="Horizontal" 
+                                    HorizontalAlignment="Right">
+                            <Button FontFamily="Inder" x:Name="RegistrationButton" Content="Регистрация" Height="35" 
+                                    Width="100" Margin="15,15,15,0"
                         Click="RegistrationButton_Click"/>
-                            <Button FontFamily="Inder" x:Name="AuthorizationCommit" Content="Войти" Height="35" Width="100" Margin="15,15,15,0"
+                            <Button FontFamily="Inder" x:Name="AuthorizationCommit" Content="Войти" Height="35" 
+                                    Width="100" Margin="15,15,15,0"
                         Click="AuthorizationCommit_Click"/>
-                            <Button FontFamily="Inder" x:Name="AuthorizationRollBack" Content="Отмена" Height="35" Width="100" Margin="15,15,15,0"
+                            <Button FontFamily="Inder" x:Name="AuthorizationRollBack" Content="Отмена" Height="35" 
+                                    Width="100" Margin="15,15,15,0"
                             Click="AuthorizationRollBack_Click"/>
                         </StackPanel>
 
