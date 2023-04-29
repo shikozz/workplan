@@ -38,7 +38,7 @@ namespace WorkPlan
         {
             Base.Users setUsers = DataBase.Users.SingleOrDefault(U => U.ID_user == roleN);
             Base.Employee setEmp = DataBase.Employee.SingleOrDefault(U => U.ID_employee == setUsers.ID_employee);
-            Base.Departments setDep = DataBase.Departments.SingleOrDefault(U => U.ID_deprtment == setEmp.ID_department);
+            Base.Departments setDep = DataBase.Departments.SingleOrDefault(U => U.ID_department == setEmp.ID_department);
             nametext.Text = selectedGood.Название;
             amounttext.Text = "0";
             deptext.Text = setDep.Название;
@@ -49,10 +49,13 @@ namespace WorkPlan
             var newApp = new Base.Applications();
             Base.Users setUsers = DataBase.Users.SingleOrDefault(U => U.ID_user == roleN);
             Base.Employee setEmp = DataBase.Employee.SingleOrDefault(U => U.ID_employee == setUsers.ID_employee);
+            Base.Status status = DataBase.Status.SingleOrDefault(U=>U.Статус=="Не расмотренно");
             newApp.ID_goods = selectedGood.ID_goods;
             newApp.ID_department = setEmp.ID_department;
-            newApp.ID_status = 400;
-            newApp.Количество = amounttext.Text;
+            newApp.ID_status = status.ID_status;
+            newApp.ID_creator = roleN;
+            newApp.created_at= DateTime.Now;
+            newApp.Количество = Convert.ToInt32(amounttext.Text);
             SourceCore.MyBase.Applications.Add(newApp);
             SourceCore.MyBase.SaveChanges();
             Close();

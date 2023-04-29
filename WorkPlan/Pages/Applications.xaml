@@ -33,6 +33,7 @@
                 <DataGridTextColumn Header="Кол-во" Binding="{Binding Path=Количество}" Width="50"/>
                 <DataGridTextColumn Header="Статус" Binding="{Binding Path=Status.Статус}" Width="150"/>
                 <DataGridTextColumn Header="Отдел" Binding="{Binding Path=Departments.Название}" Width="200"/>
+                <DataGridTextColumn Header="Создано" Binding="{Binding Path=created_at}" Width="170"/>
                 <DataGridTemplateColumn CellStyle="{x:Null}">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

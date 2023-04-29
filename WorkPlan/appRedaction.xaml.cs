@@ -36,10 +36,10 @@ namespace WorkPlan
         {
             Base.Goods setGood = DataBase.Goods.SingleOrDefault(U => U.ID_goods == SelectedApp.ID_goods);
             Base.Status setStatus = DataBase.Status.SingleOrDefault(U => U.ID_status == SelectedApp.ID_status);
-            Base.Departments setDep = DataBase.Departments.SingleOrDefault(U => U.ID_deprtment == SelectedApp.ID_department);
+            Base.Departments setDep = DataBase.Departments.SingleOrDefault(U => U.ID_department == SelectedApp.ID_department);
             nametext.Text = setGood.Название;
             deptext.Text = setDep.Название;
-            amounttext.Text = SelectedApp.Количество;
+            amounttext.Text = SelectedApp.Количество.ToString();
             combo.ItemsSource = SourceCore.MyBase.Status.ToList();
             combo.Text = setStatus.Статус;
         }
@@ -50,7 +50,7 @@ namespace WorkPlan
             {
                 var EditApp = new Base.Applications();
                 EditApp = SourceCore.MyBase.Applications.First(p => p.ID_application == SelectedApp.ID_application);
-                EditApp.Количество = amounttext.Text;
+                EditApp.Количество = Convert.ToInt32(amounttext.Text);
                 EditApp.Status = (Base.Status)combo.SelectedItem;
                 SourceCore.MyBase.SaveChanges();
                 appPage.UpdateGrid(null);

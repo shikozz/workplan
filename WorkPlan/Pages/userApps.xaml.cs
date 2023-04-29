@@ -24,6 +24,7 @@ namespace WorkPlan.Pages
         private int roleN = 0;
         private Base.Applications SelectedApp;
         public Base.Entities DataBase;
+        public string status;
         public userApps(int roleID)
         {
             InitializeComponent();
@@ -56,32 +57,48 @@ namespace WorkPlan.Pages
         private void GoToApplications(object sender, RoutedEventArgs e)
         {
             SelectedApp = (Base.Applications)AppGrid.SelectedItem;
-            if (SelectedApp.ID_status != 401)
+            Base.Status setStatus = DataBase.Status.SingleOrDefault(U => U.ID_status == SelectedApp.ID_status);
+            if (SelectedApp.ID_creator != roleN)
             {
-                castRedact newWindow = new castRedact(SelectedApp, this);
-                newWindow.ShowDialog();
+                MessageBox.Show("Вы не можете редактировать чужую заявку!");
             }
-            else 
+            else
             {
-                MessageBox.Show("Вы не можете редактировать принятую заявку!");
+                if (setStatus.Статус != "Принято")
+                {
+                    castRedact newWindow = new castRedact(SelectedApp, this);
+                    newWindow.ShowDialog();
+                }
+                else
+                {
+                    MessageBox.Show("Вы не можете редактировать принятую заявку!");
+                }
             }
         }
 
         private void delete(object sender, RoutedEventArgs e)
         {
             SelectedApp = (Base.Applications)AppGrid.SelectedItem;
-            if (SelectedApp.ID_status != 401)
+            Base.Status setStatus = DataBase.Status.SingleOrDefault(U => U.ID_status == SelectedApp.ID_status);
+            if (SelectedApp.ID_creator != roleN)
             {
-                if (System.Windows.MessageBox.Show("Удалить запись?", "Внимание", MessageBoxButton.OKCancel, MessageBoxImage.Warning) == MessageBoxResult.OK)
-                {
-                    SourceCore.MyBase.Applications.Remove((Base.Applications)AppGrid.SelectedItem);
-                    SourceCore.MyBase.SaveChanges();
-                    UpdateGrid(null);
-                }
+                MessageBox.Show("Вы не можете удалить чужую заявку!");
             }
-            else 
+            else
             {
-                MessageBox.Show("Вы не можете удалить принятую заявку!");
+                if (setStatus.Статус != "Принято")
+                {
+                    if (MessageBox.Show("Удалить запись?", "Внимание", MessageBoxButton.OKCancel, MessageBoxImage.Warning) == MessageBoxResult.OK)
+                    {
+                        SourceCore.MyBase.Applications.Remove((Base.Applications)AppGrid.SelectedItem);
+                        SourceCore.MyBase.SaveChanges();
+                        UpdateGrid(null);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Вы не можете удалить принятую заявку!");
+                }
             }
         }
 

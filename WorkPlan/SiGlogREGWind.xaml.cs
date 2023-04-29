@@ -74,19 +74,28 @@ namespace WorkPlan
                     if (validate.IsMatch(passwordstring))
                     {
                         Base.Users User = new Base.Users();
-                        User.Логин = LoginTextBox.Text;
-                        User.Пароль = passwordstring;
-                        User.Права = "WORKER";
-                        int result = Int32.Parse(IDTextBox.Text);
-                        User.ID_employee = result;
-                        // Добавление его в базу данных
-                        DataBase.Users.Add(User);
+                        Base.Users UserFind = DataBase.Users.SingleOrDefault(U => U.Логин == LoginTextBox.Text);
+                        if (UserFind == null)
+                        {
+                            User.Логин = LoginTextBox.Text;
+                            User.Пароль = passwordstring;
+                            User.Права = "WORKER";
+                            int result = Int32.Parse(IDTextBox.Text);
+                            User.ID_employee = result;
+                            // Добавление его в базу данных
+                            DataBase.Users.Add(User);
 
-                        // Сохранение изменений
-                        DataBase.SaveChanges();
-                        SiGlogWind window = new SiGlogWind();
-                        Close();
-                        window.ShowDialog();
+                            // Сохранение изменений
+                            DataBase.SaveChanges();
+                            SiGlogWind window = new SiGlogWind();
+                            Close();
+                            window.ShowDialog();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Данный логин уже занят!", "Пердупреждение", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            LoginTextBox.Text = "";
+                        }
                     } else
                     {
                         MessageBox.Show("Пожалуйста укажите пароль, используя не менее 1 заглавной и 1 строчной буквы латинского алфавита, не менее 1 цифры и общей длинной не менее 8 символов!", "Пердупреждение", MessageBoxButton.OK, MessageBoxImage.Warning);

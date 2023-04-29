@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WorkPlan"
         mc:Ignorable="d"
-        Title="MainWindow" Height="500" Width="700" MinHeight="350" ResizeMode="NoResize"
+        Title="MainWindow" Height="600" Width="950" MinHeight="350" ResizeMode="NoResize"
         WindowStyle="None"
         WindowStartupLocation="Manual"
         AllowsTransparency="True"

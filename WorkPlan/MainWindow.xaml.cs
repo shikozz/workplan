@@ -42,9 +42,9 @@ namespace WorkPlan
         {
             userButton.Content = "Выйти из аккаунта";
             Base.Users User = DataBase.Users.SingleOrDefault(U => U.ID_user == Role);
-            int emcode = User.ID_employee;
+            int emcode = (int)User.ID_employee;
             Base.Employee Employee = DataBase.Employee.SingleOrDefault(U => U.ID_employee == emcode);
-            Base.Departments dep = DataBase.Departments.SingleOrDefault(u => u.ID_deprtment == Employee.ID_department);
+            Base.Departments dep = DataBase.Departments.SingleOrDefault(u => u.ID_department == Employee.ID_department);
             if (User.Права == "ADMIN") 
             {
                 text.Text = Employee.ФИО + " - " + User.Права;
@@ -81,9 +81,10 @@ namespace WorkPlan
 
         private void userButton_Click(object sender, RoutedEventArgs e)
         {
-            SiGlogWind window = new SiGlogWind();
-            window.Show();
+            LoadingInit lwindow = new LoadingInit();
+            lwindow.Show();
             Close();
+            
         }
 
         public double widthNow()
@@ -123,20 +124,20 @@ namespace WorkPlan
         {
             if (sizeCombo.SelectedItem.ToString() == "100%")
             {
-                this.Width = 700;
-                this.Height = 500;
+                this.Width = 950;
+                this.Height = 600;
               // WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
 
             }
             if (sizeCombo.SelectedItem.ToString() == "150%") 
             {
-                this.Width = 1050;
+                this.Width = 1200;
                 this.Height = 750;
                // WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             }
             if (sizeCombo.SelectedItem.ToString() == "200%")
             {
-                this.Width = 1400;
+                this.Width = 1650;
                 this.Height = 1000;
                 //WindowStartupLocation = System.Windows.WindowStartupLocation.CenterOwner;
                // WindowStartupLocation.Manual = 0;

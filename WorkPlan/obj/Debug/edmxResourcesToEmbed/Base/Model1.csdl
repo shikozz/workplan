@@ -1,63 +1,30 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-  <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="Applications" EntityType="Model.Applications" />
-    <EntitySet Name="Departments" EntityType="Model.Departments" />
-    <EntitySet Name="Employee" EntityType="Model.Employee" />
-    <EntitySet Name="Goods" EntityType="Model.Goods" />
-    <EntitySet Name="MainPlan" EntityType="Model.MainPlan" />
-    <EntitySet Name="pictures" EntityType="Model.pictures" />
-    <EntitySet Name="Status" EntityType="Model.Status" />
-    <EntitySet Name="sysdiagrams" EntityType="Model.sysdiagrams" />
-    <EntitySet Name="Users" EntityType="Model.Users" />
-    <AssociationSet Name="FK_Заявки_Отделы" Association="Model.FK_Заявки_Отделы">
-      <End Role="Departments" EntitySet="Departments" />
-      <End Role="Applications" EntitySet="Applications" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Заявки_Статус_заявки" Association="Model.FK_Заявки_Статус_заявки">
-      <End Role="Status" EntitySet="Status" />
-      <End Role="Applications" EntitySet="Applications" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Заявки_Товары" Association="Model.FK_Заявки_Товары">
-      <End Role="Goods" EntitySet="Goods" />
-      <End Role="Applications" EntitySet="Applications" />
-    </AssociationSet>
-    <AssociationSet Name="FK_План_график_Заявки" Association="Model.FK_План_график_Заявки">
-      <End Role="Applications" EntitySet="Applications" />
-      <End Role="MainPlan" EntitySet="MainPlan" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Ответ__лицо_Ответ__лицо" Association="Model.FK_Ответ__лицо_Ответ__лицо">
-      <End Role="Departments" EntitySet="Departments" />
-      <End Role="Employee" EntitySet="Employee" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Пользователи_Ответ__лицо" Association="Model.FK_Пользователи_Ответ__лицо">
-      <End Role="Employee" EntitySet="Employee" />
-      <End Role="Users" EntitySet="Users" />
-    </AssociationSet>
-  </EntityContainer>
+<Schema Namespace="workplanModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityType Name="Applications">
     <Key>
       <PropertyRef Name="ID_application" />
     </Key>
     <Property Name="ID_application" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="ID_goods" Type="Int32" Nullable="false" />
-    <Property Name="Количество" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="ID_status" Type="Int32" Nullable="false" />
-    <Property Name="ID_department" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Departments" Relationship="Model.FK_Заявки_Отделы" FromRole="Applications" ToRole="Departments" />
-    <NavigationProperty Name="Status" Relationship="Model.FK_Заявки_Статус_заявки" FromRole="Applications" ToRole="Status" />
-    <NavigationProperty Name="Goods" Relationship="Model.FK_Заявки_Товары" FromRole="Applications" ToRole="Goods" />
-    <NavigationProperty Name="MainPlan" Relationship="Model.FK_План_график_Заявки" FromRole="Applications" ToRole="MainPlan" />
+    <Property Name="ID_goods" Type="Int32" />
+    <Property Name="Количество" Type="Int32" />
+    <Property Name="ID_status" Type="Int32" />
+    <Property Name="ID_department" Type="Int32" />
+    <Property Name="ID_creator" Type="Int32" />
+    <Property Name="created_at" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Departments" Relationship="Self.FK_Applications_Departments" FromRole="Applications" ToRole="Departments" />
+    <NavigationProperty Name="Goods" Relationship="Self.FK_Applications_Goods" FromRole="Applications" ToRole="Goods" />
+    <NavigationProperty Name="Status" Relationship="Self.FK_Applications_Status" FromRole="Applications" ToRole="Status" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_Applications_Users" FromRole="Applications" ToRole="Users" />
   </EntityType>
   <EntityType Name="Departments">
     <Key>
-      <PropertyRef Name="ID_deprtment" />
+      <PropertyRef Name="ID_department" />
     </Key>
-    <Property Name="ID_deprtment" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_department" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Название" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Кол_во_сотрудников" Type="Int32" />
-    <NavigationProperty Name="Applications" Relationship="Model.FK_Заявки_Отделы" FromRole="Departments" ToRole="Applications" />
-    <NavigationProperty Name="Employee" Relationship="Model.FK_Ответ__лицо_Ответ__лицо" FromRole="Departments" ToRole="Employee" />
+    <Property Name="Кол_во_сотрудников" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Applications" Relationship="Self.FK_Applications_Departments" FromRole="Departments" ToRole="Applications" />
+    <NavigationProperty Name="Employee" Relationship="Self.FK_Employee_Departments" FromRole="Departments" ToRole="Employee" />
   </EntityType>
   <EntityType Name="Employee">
     <Key>
@@ -65,10 +32,12 @@
     </Key>
     <Property Name="ID_employee" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="ФИО" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Должность" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="ID_department" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Departments" Relationship="Model.FK_Ответ__лицо_Ответ__лицо" FromRole="Employee" ToRole="Departments" />
-    <NavigationProperty Name="Users" Relationship="Model.FK_Пользователи_Ответ__лицо" FromRole="Employee" ToRole="Users" />
+    <Property Name="ID_specialization" Type="Int32" />
+    <Property Name="ID_department" Type="Int32" />
+    <NavigationProperty Name="Departments" Relationship="Self.FK_Employee_Departments" FromRole="Employee" ToRole="Departments" />
+    <NavigationProperty Name="Specializations" Relationship="Self.FK_Employee_Specializations" FromRole="Employee" ToRole="Specializations" />
+    <NavigationProperty Name="Structure" Relationship="Self.FK_Structure_Employee" FromRole="Employee" ToRole="Structure" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_Users_Employee" FromRole="Employee" ToRole="Users" />
   </EntityType>
   <EntityType Name="Goods">
     <Key>
@@ -77,25 +46,15 @@
     <Property Name="ID_goods" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Название" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Цена" Type="Decimal" Precision="19" Scale="4" />
-    <NavigationProperty Name="Applications" Relationship="Model.FK_Заявки_Товары" FromRole="Goods" ToRole="Applications" />
+    <NavigationProperty Name="Applications" Relationship="Self.FK_Applications_Goods" FromRole="Goods" ToRole="Applications" />
   </EntityType>
-  <EntityType Name="MainPlan">
+  <EntityType Name="Specializations">
     <Key>
-      <PropertyRef Name="ID_inplan" />
+      <PropertyRef Name="id_specialization" />
     </Key>
-    <Property Name="ID_inplan" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="ID_application" Type="Int32" Nullable="false" />
-    <Property Name="Дата_утверждения" Type="DateTime" Precision="0" />
-    <Property Name="Год_исполнения" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <NavigationProperty Name="Applications" Relationship="Model.FK_План_график_Заявки" FromRole="MainPlan" ToRole="Applications" />
-  </EntityType>
-  <EntityType Name="pictures">
-    <Key>
-      <PropertyRef Name="id_pic" />
-    </Key>
-    <Property Name="id_pic" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="pic" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="info" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="id_specialization" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name_specialization" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Employee" Relationship="Self.FK_Employee_Specializations" FromRole="Specializations" ToRole="Employee" />
   </EntityType>
   <EntityType Name="Status">
     <Key>
@@ -103,13 +62,22 @@
     </Key>
     <Property Name="ID_status" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Статус" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="Applications" Relationship="Model.FK_Заявки_Статус_заявки" FromRole="Status" ToRole="Applications" />
+    <NavigationProperty Name="Applications" Relationship="Self.FK_Applications_Status" FromRole="Status" ToRole="Applications" />
+  </EntityType>
+  <EntityType Name="Structure">
+    <Key>
+      <PropertyRef Name="id_structure" />
+    </Key>
+    <Property Name="id_structure" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_employee" Type="Int32" Nullable="false" />
+    <Property Name="role_structure" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Employee" Relationship="Self.FK_Structure_Employee" FromRole="Structure" ToRole="Employee" />
   </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>
       <PropertyRef Name="diagram_id" />
     </Key>
-    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="principal_id" Type="Int32" Nullable="false" />
     <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="version" Type="Int32" />
@@ -122,37 +90,26 @@
     <Property Name="ID_user" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Логин" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Пароль" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="ID_employee" Type="Int32" Nullable="false" />
+    <Property Name="ID_employee" Type="Int32" />
     <Property Name="Права" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="Employee" Relationship="Model.FK_Пользователи_Ответ__лицо" FromRole="Users" ToRole="Employee" />
+    <NavigationProperty Name="Applications" Relationship="Self.FK_Applications_Users" FromRole="Users" ToRole="Applications" />
+    <NavigationProperty Name="Employee" Relationship="Self.FK_Users_Employee" FromRole="Users" ToRole="Employee" />
   </EntityType>
-  <Association Name="FK_Заявки_Отделы">
-    <End Type="Model.Departments" Role="Departments" Multiplicity="1" />
-    <End Type="Model.Applications" Role="Applications" Multiplicity="*" />
+  <Association Name="FK_Applications_Departments">
+    <End Role="Departments" Type="Self.Departments" Multiplicity="0..1" />
+    <End Role="Applications" Type="Self.Applications" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Departments">
-        <PropertyRef Name="ID_deprtment" />
+        <PropertyRef Name="ID_department" />
       </Principal>
       <Dependent Role="Applications">
         <PropertyRef Name="ID_department" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Заявки_Статус_заявки">
-    <End Type="Model.Status" Role="Status" Multiplicity="1" />
-    <End Type="Model.Applications" Role="Applications" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Status">
-        <PropertyRef Name="ID_status" />
-      </Principal>
-      <Dependent Role="Applications">
-        <PropertyRef Name="ID_status" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Заявки_Товары">
-    <End Type="Model.Goods" Role="Goods" Multiplicity="1" />
-    <End Type="Model.Applications" Role="Applications" Multiplicity="*" />
+  <Association Name="FK_Applications_Goods">
+    <End Role="Goods" Type="Self.Goods" Multiplicity="0..1" />
+    <End Role="Applications" Type="Self.Applications" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Goods">
         <PropertyRef Name="ID_goods" />
@@ -162,33 +119,69 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_План_график_Заявки">
-    <End Type="Model.Applications" Role="Applications" Multiplicity="1" />
-    <End Type="Model.MainPlan" Role="MainPlan" Multiplicity="*" />
+  <Association Name="FK_Applications_Status">
+    <End Role="Status" Type="Self.Status" Multiplicity="0..1" />
+    <End Role="Applications" Type="Self.Applications" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Applications">
-        <PropertyRef Name="ID_application" />
+      <Principal Role="Status">
+        <PropertyRef Name="ID_status" />
       </Principal>
-      <Dependent Role="MainPlan">
-        <PropertyRef Name="ID_application" />
+      <Dependent Role="Applications">
+        <PropertyRef Name="ID_status" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Ответ__лицо_Ответ__лицо">
-    <End Type="Model.Departments" Role="Departments" Multiplicity="1" />
-    <End Type="Model.Employee" Role="Employee" Multiplicity="*" />
+  <Association Name="FK_Applications_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="Applications" Type="Self.Applications" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="ID_user" />
+      </Principal>
+      <Dependent Role="Applications">
+        <PropertyRef Name="ID_creator" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employee_Departments">
+    <End Role="Departments" Type="Self.Departments" Multiplicity="0..1" />
+    <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Departments">
-        <PropertyRef Name="ID_deprtment" />
+        <PropertyRef Name="ID_department" />
       </Principal>
       <Dependent Role="Employee">
         <PropertyRef Name="ID_department" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Пользователи_Ответ__лицо">
-    <End Type="Model.Employee" Role="Employee" Multiplicity="1" />
-    <End Type="Model.Users" Role="Users" Multiplicity="*" />
+  <Association Name="FK_Employee_Specializations">
+    <End Role="Specializations" Type="Self.Specializations" Multiplicity="0..1" />
+    <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Specializations">
+        <PropertyRef Name="id_specialization" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="ID_specialization" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Structure_Employee">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+    <End Role="Structure" Type="Self.Structure" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="ID_employee" />
+      </Principal>
+      <Dependent Role="Structure">
+        <PropertyRef Name="id_employee" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_Employee">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+    <End Role="Users" Type="Self.Users" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Employee">
         <PropertyRef Name="ID_employee" />
@@ -198,4 +191,77 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Applications" EntityType="Self.Applications" />
+    <EntitySet Name="Departments" EntityType="Self.Departments" />
+    <EntitySet Name="Employee" EntityType="Self.Employee" />
+    <EntitySet Name="Goods" EntityType="Self.Goods" />
+    <EntitySet Name="Specializations" EntityType="Self.Specializations" />
+    <EntitySet Name="Status" EntityType="Self.Status" />
+    <EntitySet Name="Structure" EntityType="Self.Structure" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="Users" EntityType="Self.Users" />
+    <AssociationSet Name="FK_Applications_Departments" Association="Self.FK_Applications_Departments">
+      <End Role="Departments" EntitySet="Departments" />
+      <End Role="Applications" EntitySet="Applications" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Applications_Goods" Association="Self.FK_Applications_Goods">
+      <End Role="Goods" EntitySet="Goods" />
+      <End Role="Applications" EntitySet="Applications" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Applications_Status" Association="Self.FK_Applications_Status">
+      <End Role="Status" EntitySet="Status" />
+      <End Role="Applications" EntitySet="Applications" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Applications_Users" Association="Self.FK_Applications_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Applications" EntitySet="Applications" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employee_Departments" Association="Self.FK_Employee_Departments">
+      <End Role="Departments" EntitySet="Departments" />
+      <End Role="Employee" EntitySet="Employee" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employee_Specializations" Association="Self.FK_Employee_Specializations">
+      <End Role="Specializations" EntitySet="Specializations" />
+      <End Role="Employee" EntitySet="Employee" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Structure_Employee" Association="Self.FK_Structure_Employee">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="Structure" EntitySet="Structure" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_Employee" Association="Self.FK_Users_Employee">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+  </EntityContainer>
 </Schema>

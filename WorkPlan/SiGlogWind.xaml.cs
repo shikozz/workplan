@@ -93,7 +93,7 @@ namespace WorkPlan
             }
         }
 
-        private void PutImageBase64InDb(string iFile) 
+        /*private void PutImageBase64InDb(string iFile) 
         {
             string base64 = Convert.ToBase64String(File.ReadAllBytes(iFile));
             Base.pictures newpic = new Base.pictures();
@@ -114,7 +114,7 @@ namespace WorkPlan
 
             string iImageName = @"D:\4IS2\Lebedev\WorkPlan\WorkPlan\Pictures\goods" + "." + "png";
             image.Save(iImageName, System.Drawing.Imaging.ImageFormat.Png);
-        }
+        }*/
 
 
         private void PasswordButton_Click(object sender, RoutedEventArgs e)

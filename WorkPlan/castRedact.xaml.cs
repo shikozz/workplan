@@ -36,11 +36,11 @@ namespace WorkPlan
         {
             Base.Goods setGood = DataBase.Goods.SingleOrDefault(U => U.ID_goods == SelectedApp.ID_goods);
             Base.Status setStatus = DataBase.Status.SingleOrDefault(U => U.ID_status == SelectedApp.ID_status);
-            Base.Departments setDep = DataBase.Departments.SingleOrDefault(U => U.ID_deprtment == SelectedApp.ID_department);
+            Base.Departments setDep = DataBase.Departments.SingleOrDefault(U => U.ID_department == SelectedApp.ID_department);
             nametext.Text = setGood.Название;
             statustext.Text = setStatus.Статус;
             deptext.Text = setDep.Название;
-            amounttext.Text = SelectedApp.Количество;
+            amounttext.Text = SelectedApp.Количество.ToString();
         }
 
         private void AuthorizationCommit_Click(object sender, RoutedEventArgs e)
@@ -49,7 +49,7 @@ namespace WorkPlan
             {
                 var EditApp = new Base.Applications();
                 EditApp = SourceCore.MyBase.Applications.First(P => P.ID_application == SelectedApp.ID_application);
-                EditApp.Количество = amounttext.Text;
+                EditApp.Количество = Convert.ToInt32(amounttext.Text);
                 SourceCore.MyBase.SaveChanges();
                 appPage.UpdateGrid(null);
                 appPage.AppGrid.SelectedItem = EditApp;

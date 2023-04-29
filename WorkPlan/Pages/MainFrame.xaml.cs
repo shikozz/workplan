@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,9 +21,11 @@ namespace WorkPlan.Pages
     /// </summary>
     public partial class MainFrame : Page
     {
+        private Base.Entities DataBase;
         int role = 0;
         private Window mainWindow;
         private double _width;
+        private string userRole;
         public MainFrame(int roleN, double width, double height, Window MainWindow)
         {
             InitializeComponent();
@@ -31,20 +34,25 @@ namespace WorkPlan.Pages
             _width = width;
             //redraw(width);
             //mainWindow.wid
+            DataBase = new Base.Entities();
             init(role);
         }
 
         public void init(int role)
         {
-            if (role == 700)
+            Base.Users UserFind = DataBase.Users.SingleOrDefault(U => U.ID_user == role);
+            userRole = UserFind.Права;
+            if (userRole=="ADMIN")
             {
                 goods.Content = "Все товары";
                 apps.Content = "Все заявки";
+                admPanel.Visibility= Visibility.Visible;
             }
             else
             {
                 goods.Content = "Все товары";
                 apps.Content = "Мои заявки";
+                admPanel.Visibility= Visibility.Hidden;
             }
         }
 
@@ -63,7 +71,7 @@ namespace WorkPlan.Pages
 
         private void btnLight_Click(object sender, RoutedEventArgs e)
         {
-            if (role == 700)
+            if (userRole=="ADMIN")
             {
                 Goods goods = new Goods();
                 NavigationService.Navigate(goods);
@@ -77,7 +85,7 @@ namespace WorkPlan.Pages
 
         private void btnLight1_Click(object sender, RoutedEventArgs e)
         {
-            if (role == 700)
+            if (userRole == "ADMIN")
             {
                 Applications apps = new Applications();
                 NavigationService.Navigate(apps);
@@ -92,6 +100,12 @@ namespace WorkPlan.Pages
         private void Grid_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             redraw(_width);
+        }
+
+        private void admPanel_Click(object sender, RoutedEventArgs e)
+        {
+            AdminPanel adminPanel= new AdminPanel();
+            NavigationService.Navigate(adminPanel);
         }
     }
 }
