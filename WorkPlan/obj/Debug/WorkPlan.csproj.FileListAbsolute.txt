@@ -279,3 +279,5 @@ C:\Users\alexc\OneDrive\Рабочий стол\материалы\workplan\Work
 C:\Users\alexc\OneDrive\Рабочий стол\материалы\workplan\WorkPlan\obj\Debug\Pages\Structure.baml
 C:\Users\alexc\OneDrive\Рабочий стол\материалы\workplan\WorkPlan\obj\Debug\addToStructure.g.cs
 C:\Users\alexc\OneDrive\Рабочий стол\материалы\workplan\WorkPlan\obj\Debug\addToStructure.baml
+C:\Users\alexc\OneDrive\Рабочий стол\материалы\workplan\WorkPlan\obj\Debug\Pages\FinalPlan.g.cs
+C:\Users\alexc\OneDrive\Рабочий стол\материалы\workplan\WorkPlan\obj\Debug\Pages\FinalPlan.baml

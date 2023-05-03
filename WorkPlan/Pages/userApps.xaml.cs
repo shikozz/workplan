@@ -64,14 +64,14 @@ namespace WorkPlan.Pages
             }
             else
             {
-                if (setStatus.Статус != "Принято")
+                if (setStatus.Статус != "Принято" || setStatus.Статус!="Закрыто")
                 {
                     castRedact newWindow = new castRedact(SelectedApp, this);
                     newWindow.ShowDialog();
                 }
                 else
                 {
-                    MessageBox.Show("Вы не можете редактировать принятую заявку!");
+                    MessageBox.Show("Вы не можете редактировать эту заявку!");
                 }
             }
         }
@@ -86,7 +86,7 @@ namespace WorkPlan.Pages
             }
             else
             {
-                if (setStatus.Статус != "Принято")
+                if (setStatus.Статус != "Принято" || setStatus.Статус != "Закрыто")
                 {
                     if (MessageBox.Show("Удалить запись?", "Внимание", MessageBoxButton.OKCancel, MessageBoxImage.Warning) == MessageBoxResult.OK)
                     {
@@ -97,7 +97,7 @@ namespace WorkPlan.Pages
                 }
                 else
                 {
-                    MessageBox.Show("Вы не можете удалить принятую заявку!");
+                    MessageBox.Show("Вы не можете удалить эту заявку!");
                 }
             }
         }

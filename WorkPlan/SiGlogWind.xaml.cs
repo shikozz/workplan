@@ -62,22 +62,9 @@ namespace WorkPlan
             Base.Users User = DataBase.Users.SingleOrDefault(U => U.Логин == LoginText.Text && U.Пароль.Equals(PasswordText.Password, StringComparison.CurrentCulture));
             if (User != null)
             {
-                if (User.Права == "ADMIN")
-                {
-
-                    MainWindow window = new MainWindow(User.ID_user);
-                    window.Show();
-                    Close();
-                }
-                else
-                {
-                    if (User.Права == "WORKER")
-                    {
-                        MainWindow window = new MainWindow(User.ID_user);
-                        window.Show();
-                        Close();
-                    }
-                }
+                 MainWindow window = new MainWindow(User.ID_user);
+                 window.Show();
+                 Close();
             }
             else
             {

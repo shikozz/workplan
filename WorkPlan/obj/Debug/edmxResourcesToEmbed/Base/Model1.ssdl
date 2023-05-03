@@ -10,7 +10,7 @@
     <Property Name="ID_status" Type="int" />
     <Property Name="ID_department" Type="int" />
     <Property Name="ID_creator" Type="int" />
-    <Property Name="created_at" Type="date" />
+    <Property Name="created_at" Type="datetime" />
   </EntityType>
   <EntityType Name="Departments">
     <Key>
@@ -28,6 +28,13 @@
     <Property Name="ФИО" Type="nvarchar" MaxLength="50" />
     <Property Name="ID_specialization" Type="int" />
     <Property Name="ID_department" Type="int" />
+  </EntityType>
+  <EntityType Name="FinalPlan">
+    <Key>
+      <PropertyRef Name="ID_finalplan" />
+    </Key>
+    <Property Name="ID_finalplan" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_application" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Goods">
     <Key>
@@ -50,14 +57,6 @@
     </Key>
     <Property Name="ID_status" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Статус" Type="nvarchar" MaxLength="50" />
-  </EntityType>
-  <EntityType Name="Structure">
-    <Key>
-      <PropertyRef Name="id_structure" />
-    </Key>
-    <Property Name="id_structure" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="id_employee" Type="int" Nullable="false" />
-    <Property Name="role_structure" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>
@@ -151,15 +150,15 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Structure_Employee">
-    <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
-    <End Role="Structure" Type="Self.Structure" Multiplicity="*" />
+  <Association Name="FK_FinalPlan_Applications">
+    <End Role="Applications" Type="Self.Applications" Multiplicity="1" />
+    <End Role="FinalPlan" Type="Self.FinalPlan" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Employee">
-        <PropertyRef Name="ID_employee" />
+      <Principal Role="Applications">
+        <PropertyRef Name="ID_application" />
       </Principal>
-      <Dependent Role="Structure">
-        <PropertyRef Name="id_employee" />
+      <Dependent Role="FinalPlan">
+        <PropertyRef Name="ID_application" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -210,10 +209,10 @@
     <EntitySet Name="Applications" EntityType="Self.Applications" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Departments" EntityType="Self.Departments" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FinalPlan" EntityType="Self.FinalPlan" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Goods" EntityType="Self.Goods" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Specializations" EntityType="Self.Specializations" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Structure" EntityType="Self.Structure" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_Applications_Departments" Association="Self.FK_Applications_Departments">
@@ -240,9 +239,9 @@
       <End Role="Specializations" EntitySet="Specializations" />
       <End Role="Employee" EntitySet="Employee" />
     </AssociationSet>
-    <AssociationSet Name="FK_Structure_Employee" Association="Self.FK_Structure_Employee">
-      <End Role="Employee" EntitySet="Employee" />
-      <End Role="Structure" EntitySet="Structure" />
+    <AssociationSet Name="FK_FinalPlan_Applications" Association="Self.FK_FinalPlan_Applications">
+      <End Role="Applications" EntitySet="Applications" />
+      <End Role="FinalPlan" EntitySet="FinalPlan" />
     </AssociationSet>
     <AssociationSet Name="FK_Users_Employee" Association="Self.FK_Users_Employee">
       <End Role="Employee" EntitySet="Employee" />

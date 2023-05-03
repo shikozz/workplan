@@ -54,5 +54,10 @@ namespace WorkPlan.Pages
             if (e.Key == Key.Escape)
             { NavigationService.GoBack(); }
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Pages.FinalPlan());
+        }
     }
 }

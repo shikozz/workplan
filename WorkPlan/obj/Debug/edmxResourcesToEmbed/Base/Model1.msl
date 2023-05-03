@@ -33,6 +33,14 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="FinalPlan">
+      <EntityTypeMapping TypeName="workplanModel.FinalPlan">
+        <MappingFragment StoreEntitySet="FinalPlan">
+          <ScalarProperty Name="ID_finalplan" ColumnName="ID_finalplan" />
+          <ScalarProperty Name="ID_application" ColumnName="ID_application" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Goods">
       <EntityTypeMapping TypeName="workplanModel.Goods">
         <MappingFragment StoreEntitySet="Goods">
@@ -55,15 +63,6 @@
         <MappingFragment StoreEntitySet="Status">
           <ScalarProperty Name="ID_status" ColumnName="ID_status" />
           <ScalarProperty Name="Статус" ColumnName="Статус" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Structure">
-      <EntityTypeMapping TypeName="workplanModel.Structure">
-        <MappingFragment StoreEntitySet="Structure">
-          <ScalarProperty Name="id_structure" ColumnName="id_structure" />
-          <ScalarProperty Name="id_employee" ColumnName="id_employee" />
-          <ScalarProperty Name="role_structure" ColumnName="role_structure" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

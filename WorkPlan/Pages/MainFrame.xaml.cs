@@ -42,19 +42,27 @@ namespace WorkPlan.Pages
         {
             Base.Users UserFind = DataBase.Users.SingleOrDefault(U => U.ID_user == role);
             userRole = UserFind.Права;
-            if (userRole=="ADMIN")
+            if (userRole=="ADMIN" || userRole=="MAINBUH")
             {
                 goods.Content = "Все товары";
                 apps.Content = "Все заявки";
-                admPanel.Visibility= Visibility.Visible;
+                admPanel.Content = "Редактировать списки";
+                admPanel.Click += admPanel_Click;
+                if (userRole == "MAINBUH")
+                {
+                    admPanel.Content = "Структура организации";
+                    admPanel.Click += admPanel_Click1;
+                }
             }
             else
             {
                 goods.Content = "Все товары";
                 apps.Content = "Мои заявки";
-                admPanel.Visibility= Visibility.Hidden;
+                admPanel.Content = "Структура организации";
+                admPanel.Click += admPanel_Click1;
             }
         }
+
 
         public void redraw(double width)
         {
@@ -85,7 +93,7 @@ namespace WorkPlan.Pages
 
         private void btnLight1_Click(object sender, RoutedEventArgs e)
         {
-            if (userRole == "ADMIN")
+            if (userRole == "ADMIN" || userRole == "MAINBUH")
             {
                 Applications apps = new Applications();
                 NavigationService.Navigate(apps);
@@ -106,6 +114,12 @@ namespace WorkPlan.Pages
         {
             AdminPanel adminPanel= new AdminPanel();
             NavigationService.Navigate(adminPanel);
+        }
+
+        private void admPanel_Click1(object sender, RoutedEventArgs e)
+        {
+            Structure strPanel = new Structure();
+            NavigationService.Navigate(strPanel);
         }
     }
 }

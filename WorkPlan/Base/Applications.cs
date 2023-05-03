@@ -14,6 +14,12 @@ namespace WorkPlan.Base
     
     public partial class Applications
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Applications()
+        {
+            this.FinalPlan = new HashSet<FinalPlan>();
+        }
+    
         public int ID_application { get; set; }
         public Nullable<int> ID_goods { get; set; }
         public Nullable<int> Количество { get; set; }
@@ -26,5 +32,7 @@ namespace WorkPlan.Base
         public virtual Goods Goods { get; set; }
         public virtual Status Status { get; set; }
         public virtual Users Users { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<FinalPlan> FinalPlan { get; set; }
     }
 }

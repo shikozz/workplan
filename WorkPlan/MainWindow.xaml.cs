@@ -45,9 +45,10 @@ namespace WorkPlan
             int emcode = (int)User.ID_employee;
             Base.Employee Employee = DataBase.Employee.SingleOrDefault(U => U.ID_employee == emcode);
             Base.Departments dep = DataBase.Departments.SingleOrDefault(u => u.ID_department == Employee.ID_department);
-            if (User.Права == "ADMIN") 
+            Base.Specializations spec = DataBase.Specializations.SingleOrDefault(U => U.id_specialization == Employee.ID_specialization);
+            if (User.Права == "ADMIN" || User.Права=="MAINBUH") 
             {
-                text.Text = Employee.ФИО + " - " + User.Права;
+                text.Text = Employee.ФИО + " - " + spec.Name_specialization;
             }
             else
             {
@@ -82,9 +83,8 @@ namespace WorkPlan
         private void userButton_Click(object sender, RoutedEventArgs e)
         {
             LoadingInit lwindow = new LoadingInit();
-            lwindow.Show();
+            //lwindow.Show();
             Close();
-            
         }
 
         public double widthNow()

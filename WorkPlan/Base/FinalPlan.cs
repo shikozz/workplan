@@ -12,12 +12,11 @@ namespace WorkPlan.Base
     using System;
     using System.Collections.Generic;
     
-    public partial class Structure
+    public partial class FinalPlan
     {
-        public int id_structure { get; set; }
-        public int id_employee { get; set; }
-        public string role_structure { get; set; }
+        public int ID_finalplan { get; set; }
+        public int ID_application { get; set; }
     
-        public virtual Employee Employee { get; set; }
+        public virtual Applications Applications { get; set; }
     }
 }
