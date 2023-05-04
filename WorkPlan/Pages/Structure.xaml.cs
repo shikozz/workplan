@@ -28,34 +28,98 @@ namespace WorkPlan.Pages
     {
         public List<Employee> Emp { get; set; }
         private Base.Entities DataBase;
+        private bool loadStrc = true;
+        private int depNum = 0;
+
         public Structure()
         {
             InitializeComponent();
-            DataBase= new Base.Entities();
+            DataBase = new Base.Entities();
             loadStructure();
         }
 
         public void loadStructure()
         {
-            Base.Specializations sSpecTest = DataBase.Specializations.SingleOrDefault(U => U.Name_specialization.Contains("Руководитель"));
-            Base.Employee sEmpTest = DataBase.Employee.First(U=>U.ID_specialization == sSpecTest.id_specialization);
-            var label = new Label
-            {
-                Content = sEmpTest.ФИО + " - Руководитель",
-                FontSize = 40,
-                HorizontalAlignment= HorizontalAlignment.Center,
-            };
-            stackTest.Children.Add(label);
+            List<int> depIds = new List<int>();
+            stackTest.Children.Clear();
+            int str = DataBase.Structure.Count();
 
-            Base.Specializations sSpec1Test = DataBase.Specializations.SingleOrDefault(U => U.Name_specialization.Contains("Бухгалтер"));
-            Base.Employee sEm1pTest = DataBase.Employee.First(U => U.ID_specialization == sSpec1Test.id_specialization);
-            var label1 = new Label
+            Base.Structure strucMain = DataBase.Structure.SingleOrDefault(U => U.roleo == "mainman");
+            if (strucMain == null)
             {
-                Content = sEm1pTest.ФИО+" - Главный Бухгалтер",
-                FontSize = 40,
-                HorizontalAlignment = HorizontalAlignment.Center,
-            };
-            stackTest.Children.Add(label1);
+                var lostlabel = new Label
+                {
+                    Content = "Не назначен руководитель",
+                    FontSize = 40,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                };
+                var btnMainAdd = new Button
+                {
+                    Content = "Добавить руководителя",
+                };
+                btnMainAdd.Click += addMain;
+                stackTest.Children.Add(lostlabel);
+                stackTest.Children.Add(btnMainAdd);
+            }
+            else
+            {
+                Base.Employee sEmpTest = DataBase.Employee.First(U => U.ID_employee == strucMain.id_Emp);
+                Base.Specializations specTest = DataBase.Specializations.First(U => U.id_specialization == sEmpTest.ID_specialization);
+                var label = new Label
+                {
+                    Content = sEmpTest.ФИО + " - " + specTest.Name_specialization,
+                    FontSize = 40,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                };
+                var btn = new Button
+                {
+                    Content = "Удалить",
+                    Width = 100,
+                    VerticalAlignment = VerticalAlignment.Center,
+                };
+                btn.Click += delMain;
+                stackTest.Children.Add(label);
+                stackTest.Children.Add(btn);
+            }
+
+            Base.Structure strucBuh = DataBase.Structure.SingleOrDefault(U => U.roleo == "buh");
+            if (strucBuh == null)
+            {
+                var lostlabel = new Label
+                {
+                    Content = "Не назначен бухгалтер",
+                    FontSize = 40,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                };
+                var btnMainAdd = new Button
+                {
+                    Content = "Добавить Бухгалтера",
+                };
+                btnMainAdd.Click += addBuh;
+                stackTest.Children.Add(lostlabel);
+                stackTest.Children.Add(btnMainAdd);
+            }
+            else
+            {
+                Base.Employee sEm1pTest = DataBase.Employee.First(U => U.ID_employee == strucBuh.id_Emp);
+                Base.Specializations specTest1 = DataBase.Specializations.First(U => U.id_specialization == sEm1pTest.ID_specialization);
+                var label1 = new Label
+                {
+                    Content = sEm1pTest.ФИО + " - " + specTest1.Name_specialization,
+                    FontSize = 40,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                };
+                var btn = new Button
+                {
+                    Content = "Удалить",
+                    Width = 100,
+                    VerticalAlignment = VerticalAlignment.Center,
+                };
+                btn.Click += delBuh;
+                stackTest.Children.Add(label1);
+                stackTest.Children.Add(btn);
+            }
+
             var rect = new Rectangle
             {
                 Height = 1,
@@ -69,39 +133,103 @@ namespace WorkPlan.Pages
             stackTest.Children.Add(stackHor);
             foreach (Base.Departments department in DataBase.Departments)
             {
-                if(department.Название!= "Отдел кадров")
+                if (department.Название != "Отдел кадров")
                 {
+                    depIds.Add(department.ID_department);
                     var stackPanelAdd = new StackPanel
                     {
-                        
+
                     };
                     var namelabel = new Label
                     {
                         Content = department.Название,
-                        FontSize=25,
-                        FontWeight= FontWeights.Heavy,
+                        FontSize = 25,
+                        FontWeight = FontWeights.Heavy,
                         HorizontalAlignment = HorizontalAlignment.Center,
                     };
                     stackPanelAdd.Children.Add(namelabel);
-                    Base.Specializations sSpecDep = DataBase.Specializations.SingleOrDefault(U => U.Name_specialization.Contains("Начальник"));
-                    Base.Employee sEmpDep = DataBase.Employee.First(U => U.ID_specialization == sSpecDep.id_specialization && U.ID_department == department.ID_department );
 
-                    var labell = new Label
+                    Base.Structure strMain = DataBase.Structure.SingleOrDefault(U => U.roleo == "mainDep_" + department.ID_department.ToString());
+
+                    if (strMain != null)
                     {
-                        Content = sEmpDep.ФИО + " - Начальник",
-                        FontSize=20,
-                        HorizontalAlignment = HorizontalAlignment.Center,
-                    };
-                    stackPanelAdd.Children.Add(labell);
-                    Base.Specializations sSpecDep1 = DataBase.Specializations.SingleOrDefault(U => U.Name_specialization.Contains("Зам"));
-                    Base.Employee sEmpDep1 = DataBase.Employee.First(U => U.ID_specialization == sSpecDep1.id_specialization && U.ID_department == department.ID_department);
-                    var labelll = new Label
+                        Base.Employee empMain = DataBase.Employee.SingleOrDefault(U => U.ID_employee == strMain.id_Emp);
+                        var labeldepMain = new Label
+                        {
+                            Content = empMain.ФИО + " - Начальник",
+                            FontSize = 20,
+                            HorizontalAlignment = HorizontalAlignment.Center,
+                        };
+                        var btn = new Button
+                        {
+                            Content = "Удалить начальника отдела "+department.Название,
+                            VerticalAlignment = VerticalAlignment.Center,
+                        };
+                        btn.Click += delDepMain;
+                        stackPanelAdd.Children.Add(labeldepMain);
+                        stackPanelAdd.Children.Add(btn);
+                    }
+                    else
                     {
-                        Content = sEmpDep1.ФИО +" - Заместитель начальника",
-                        FontSize = 20,
-                        HorizontalAlignment = HorizontalAlignment.Center,
-                    };
-                    stackPanelAdd.Children.Add(labelll);
+                        var lostlabel = new Label
+                        {
+                            Content = "Не назначен руководитель отдела",
+                            FontSize = 20,
+                            HorizontalAlignment = HorizontalAlignment.Center,
+                        };
+                        var btnMainAdd = new Button
+                        {
+                            Content = "Добавить руководителя в отдел "+department.Название,
+                        };
+                        if (depNum == 0)
+                        {
+                            depNum = department.ID_department;
+                        }
+                        btnMainAdd.Name = "";
+                        btnMainAdd.Click += addDepMain;
+                        stackPanelAdd.Children.Add(lostlabel);
+                        stackPanelAdd.Children.Add(btnMainAdd);
+                    }
+
+                    Base.Structure strZam = DataBase.Structure.SingleOrDefault(U => U.roleo == "zamDep_" + department.ID_department.ToString());
+                    if (strZam != null)
+                    {
+                        Base.Employee empZam = DataBase.Employee.SingleOrDefault(U => U.ID_employee == strZam.id_Emp);
+                        var labelDepZam = new Label
+                        {
+                            Content = empZam.ФИО + " - Зам. начальника",
+                            FontSize = 20,
+                            HorizontalAlignment = HorizontalAlignment.Center,
+                        };
+                        var btn = new Button
+                        {
+                            Content = "Удалить зама начальника отдела "+department.Название,
+                            VerticalAlignment = VerticalAlignment.Center,
+                        };
+                        btn.Click += delDepZam;
+                        stackPanelAdd.Children.Add(labelDepZam);
+                        stackPanelAdd.Children.Add(btn);
+                    }
+                    else
+                    {
+                        var lostlabel = new Label
+                        {
+                            Content = "Не назначен зам руководитель отдела",
+                            FontSize = 20,
+                            HorizontalAlignment = HorizontalAlignment.Center,
+                        };
+                        var btnMainAdd = new Button
+                        {
+                            Content = "Добавить зама руководителя отдела "+department.Название,
+                        };
+                        if (depNum == 0)
+                        {
+                            depNum = department.ID_department;
+                        }
+                        btnMainAdd.Click += addDepZam;
+                        stackPanelAdd.Children.Add(lostlabel);
+                        stackPanelAdd.Children.Add(btnMainAdd);
+                    }
                     var rect1 = new Rectangle
                     {
                         Height = 1,
@@ -110,7 +238,124 @@ namespace WorkPlan.Pages
                     stackPanelAdd.Children.Add(rect1);
                     stackHor.Children.Add(stackPanelAdd);
                 }
+
             }
+        }
+
+        public void createNewStructure()
+        {
+
+        }
+
+        private void delDepZam(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Button button = sender as Button;
+                string content = button.Content.ToString();
+                content = content.Substring(31);
+                Base.Departments dep = DataBase.Departments.Single(U => U.Название == content);
+                DataBase.Configuration.ValidateOnSaveEnabled = false;
+                Base.Structure str = DataBase.Structure.Single(U => U.roleo == "zamDep_" + dep.ID_department);
+                DataBase.Entry(str).State = System.Data.Entity.EntityState.Deleted;
+                DataBase.SaveChanges();
+                loadStructure();
+
+            }
+            finally
+            {
+                DataBase.Configuration.ValidateOnSaveEnabled = true;
+            }
+        }
+
+        private void delDepMain(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Button button = sender as Button;
+                string content = button.Content.ToString();
+                content = content.Substring(26);
+                Base.Departments dep = DataBase.Departments.Single(U => U.Название == content);
+                DataBase.Configuration.ValidateOnSaveEnabled = false;
+                Base.Structure str = DataBase.Structure.Single(U => U.roleo == "mainDep_" + dep.ID_department);
+                DataBase.Entry(str).State = System.Data.Entity.EntityState.Deleted;
+                DataBase.SaveChanges();
+                loadStructure();
+            }
+            finally
+            {
+                DataBase.Configuration.ValidateOnSaveEnabled = true;
+            }
+            depNum = 0;
+        }
+
+        private void delBuh(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                DataBase.Configuration.ValidateOnSaveEnabled = false;
+                Base.Structure str = DataBase.Structure.Single(U => U.roleo == "buh");
+                DataBase.Entry(str).State = System.Data.Entity.EntityState.Deleted;
+                DataBase.SaveChanges();
+                loadStructure();
+
+            }
+            finally
+            {
+                DataBase.Configuration.ValidateOnSaveEnabled = true;
+            }
+            depNum = 0;
+        }
+
+        private void delMain(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                DataBase.Configuration.ValidateOnSaveEnabled = false;
+                Base.Structure str = DataBase.Structure.Single(U => U.roleo == "mainman");
+                DataBase.Entry(str).State = System.Data.Entity.EntityState.Deleted;
+                DataBase.SaveChanges();
+                loadStructure();
+
+            }
+            finally
+            {
+                DataBase.Configuration.ValidateOnSaveEnabled = true;
+            }
+        }
+
+        private void addBuh(object sender, RoutedEventArgs e)
+        {
+            addToStructure window = new addToStructure("buh", 0, this);
+            window.ShowDialog();
+        }
+
+        private void addMain(object sender, RoutedEventArgs e)
+        {
+            addToStructure window = new addToStructure("mainman", 0, this);
+            window.ShowDialog();
+        }
+
+        private void addDepMain(object sender, RoutedEventArgs e)
+        {
+            Button button = sender as Button;
+            string content = button.Content.ToString();
+            content = content.Substring(30);
+            Base.Departments depint = DataBase.Departments.Single(U => U.Название == content);
+            addToStructure window = new addToStructure("mainDep_", depint.ID_department, this);
+            depNum = 0;
+            window.ShowDialog();
+        }
+
+        private void addDepZam(object sender, RoutedEventArgs e)
+        {
+            Button button = sender as Button;
+            string content = button.Content.ToString();
+            content= content.Substring(34);
+            Base.Departments depInt = DataBase.Departments.Single(U => U.Название == content);
+            addToStructure window = new addToStructure("zamDep_", depInt.ID_department, this);
+            depNum = 0;
+            window.ShowDialog();
         }
 
         private void backButton_Click(object sender, RoutedEventArgs e)

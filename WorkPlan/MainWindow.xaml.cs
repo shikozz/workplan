@@ -151,7 +151,11 @@ namespace WorkPlan
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            this.DragMove();
+            try
+            {
+                this.DragMove();
+            }
+            catch { }
         }
     }
 }

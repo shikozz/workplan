@@ -17,6 +17,7 @@ namespace WorkPlan.Base
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Employee()
         {
+            this.Structure = new HashSet<Structure>();
             this.Users = new HashSet<Users>();
         }
     
@@ -27,6 +28,8 @@ namespace WorkPlan.Base
     
         public virtual Departments Departments { get; set; }
         public virtual Specializations Specializations { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Structure> Structure { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Users> Users { get; set; }
     }

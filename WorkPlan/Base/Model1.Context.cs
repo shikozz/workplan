@@ -34,6 +34,7 @@ namespace WorkPlan.Base
         public virtual DbSet<Goods> Goods { get; set; }
         public virtual DbSet<Specializations> Specializations { get; set; }
         public virtual DbSet<Status> Status { get; set; }
+        public virtual DbSet<Structure> Structure { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Users> Users { get; set; }
     

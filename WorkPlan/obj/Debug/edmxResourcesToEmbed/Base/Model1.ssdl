@@ -58,6 +58,14 @@
     <Property Name="ID_status" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Статус" Type="nvarchar" MaxLength="50" />
   </EntityType>
+  <EntityType Name="Structure">
+    <Key>
+      <PropertyRef Name="ID_structure" />
+    </Key>
+    <Property Name="ID_structure" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_Emp" Type="int" Nullable="false" />
+    <Property Name="roleo" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>
       <PropertyRef Name="diagram_id" />
@@ -162,6 +170,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Structure_Employee">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+    <End Role="Structure" Type="Self.Structure" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="ID_employee" />
+      </Principal>
+      <Dependent Role="Structure">
+        <PropertyRef Name="id_Emp" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Users_Employee">
     <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
     <End Role="Users" Type="Self.Users" Multiplicity="*" />
@@ -213,6 +233,7 @@
     <EntitySet Name="Goods" EntityType="Self.Goods" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Specializations" EntityType="Self.Specializations" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Structure" EntityType="Self.Structure" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_Applications_Departments" Association="Self.FK_Applications_Departments">
@@ -242,6 +263,10 @@
     <AssociationSet Name="FK_FinalPlan_Applications" Association="Self.FK_FinalPlan_Applications">
       <End Role="Applications" EntitySet="Applications" />
       <End Role="FinalPlan" EntitySet="FinalPlan" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Structure_Employee" Association="Self.FK_Structure_Employee">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="Structure" EntitySet="Structure" />
     </AssociationSet>
     <AssociationSet Name="FK_Users_Employee" Association="Self.FK_Users_Employee">
       <End Role="Employee" EntitySet="Employee" />

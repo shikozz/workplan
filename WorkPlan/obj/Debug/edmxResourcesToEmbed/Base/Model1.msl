@@ -66,6 +66,15 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Structure">
+      <EntityTypeMapping TypeName="workplanModel.Structure">
+        <MappingFragment StoreEntitySet="Structure">
+          <ScalarProperty Name="ID_structure" ColumnName="ID_structure" />
+          <ScalarProperty Name="id_Emp" ColumnName="id_Emp" />
+          <ScalarProperty Name="roleo" ColumnName="roleo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="sysdiagrams">
       <EntityTypeMapping TypeName="workplanModel.sysdiagrams">
         <MappingFragment StoreEntitySet="sysdiagrams">
