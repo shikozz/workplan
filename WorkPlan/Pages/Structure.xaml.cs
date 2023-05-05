@@ -36,6 +36,8 @@ namespace WorkPlan.Pages
             InitializeComponent();
             DataBase = new Base.Entities();
             loadStructure();
+            backButton.Background = new ImageBrush(new BitmapImage(
+new Uri("xmark.png", UriKind.Relative)));
         }
 
         public void loadStructure()
@@ -56,7 +58,11 @@ namespace WorkPlan.Pages
                 var btnMainAdd = new Button
                 {
                     Content = "Добавить руководителя",
+                    Width = 30,
+                    Height = 30,
                 };
+                Style style = this.FindResource("addStyle") as Style;
+                btnMainAdd.Style = style;
                 btnMainAdd.Click += addMain;
                 stackTest.Children.Add(lostlabel);
                 stackTest.Children.Add(btnMainAdd);
@@ -74,9 +80,12 @@ namespace WorkPlan.Pages
                 var btn = new Button
                 {
                     Content = "Удалить",
-                    Width = 100,
                     VerticalAlignment = VerticalAlignment.Center,
+                    Width = 30,
+                    Height = 30,
                 };
+                Style style = this.FindResource("testStyle") as Style;
+                btn.Style = style;
                 btn.Click += delMain;
                 stackTest.Children.Add(label);
                 stackTest.Children.Add(btn);
@@ -94,7 +103,11 @@ namespace WorkPlan.Pages
                 var btnMainAdd = new Button
                 {
                     Content = "Добавить Бухгалтера",
+                    Width = 30,
+                    Height = 30,
                 };
+                Style style = this.FindResource("addStyle") as Style;
+                btnMainAdd.Style = style;
                 btnMainAdd.Click += addBuh;
                 stackTest.Children.Add(lostlabel);
                 stackTest.Children.Add(btnMainAdd);
@@ -112,9 +125,12 @@ namespace WorkPlan.Pages
                 var btn = new Button
                 {
                     Content = "Удалить",
-                    Width = 100,
+                    Width = 30,
+                    Height = 30,
                     VerticalAlignment = VerticalAlignment.Center,
                 };
+                Style style = this.FindResource("testStyle") as Style;
+                btn.Style = style;
                 btn.Click += delBuh;
                 stackTest.Children.Add(label1);
                 stackTest.Children.Add(btn);
@@ -162,9 +178,17 @@ namespace WorkPlan.Pages
                         };
                         var btn = new Button
                         {
+                            Style = null,
                             Content = "Удалить начальника отдела "+department.Название,
                             VerticalAlignment = VerticalAlignment.Center,
+                            Width=30,
+                            Height=30,
+                            FontSize=1,
                         };
+                        Style style = this.FindResource("testStyle") as Style;
+                        btn.Style= style;
+                        btn.Background = new ImageBrush(new BitmapImage(
+new Uri("xmark.png", UriKind.Relative)));
                         btn.Click += delDepMain;
                         stackPanelAdd.Children.Add(labeldepMain);
                         stackPanelAdd.Children.Add(btn);
@@ -180,7 +204,11 @@ namespace WorkPlan.Pages
                         var btnMainAdd = new Button
                         {
                             Content = "Добавить руководителя в отдел "+department.Название,
+                            Width = 30,
+                            Height = 30,
                         };
+                        Style style = this.FindResource("addStyle") as Style;
+                        btnMainAdd.Style= style;
                         if (depNum == 0)
                         {
                             depNum = department.ID_department;
@@ -205,7 +233,11 @@ namespace WorkPlan.Pages
                         {
                             Content = "Удалить зама начальника отдела "+department.Название,
                             VerticalAlignment = VerticalAlignment.Center,
+                            Width = 30,
+                            Height = 30,
                         };
+                        Style style = this.FindResource("testStyle") as Style;
+                        btn.Style = style;
                         btn.Click += delDepZam;
                         stackPanelAdd.Children.Add(labelDepZam);
                         stackPanelAdd.Children.Add(btn);
@@ -221,7 +253,11 @@ namespace WorkPlan.Pages
                         var btnMainAdd = new Button
                         {
                             Content = "Добавить зама руководителя отдела "+department.Название,
+                            Width = 30,
+                            Height = 30,
                         };
+                        Style style = this.FindResource("addStyle") as Style;
+                        btnMainAdd.Style = style;
                         if (depNum == 0)
                         {
                             depNum = department.ID_department;
@@ -240,6 +276,11 @@ namespace WorkPlan.Pages
                 }
 
             }
+        }
+
+        private void Btn_MouseLeave(object sender, MouseEventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         public void createNewStructure()
@@ -361,6 +402,25 @@ namespace WorkPlan.Pages
         private void backButton_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.GoBack();
+        }
+
+        private void mouseEnter(object sender, MouseEventArgs e)
+        {
+            Button button = sender as Button;
+            button.Foreground = new ImageBrush(new BitmapImage(
+new Uri("xmark.png", UriKind.Relative)));
+        }
+
+        private void mouseLeave(object sender, MouseEventArgs e)
+        {
+            Button button = sender as Button;
+            button.Foreground = new ImageBrush(new BitmapImage(
+new Uri("xmark.png", UriKind.Relative)));
+        }
+
+        private void backButton_MouseEnter(object sender, MouseEventArgs e)
+        {
+
         }
     }
 }

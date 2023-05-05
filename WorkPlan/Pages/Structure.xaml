@@ -7,13 +7,98 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Structure">
+    <Page.Resources>
+        <Style x:Key="testStyle" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Grid>
+                            <Ellipse>
 
+                                <Ellipse.Fill>
+                                    <SolidColorBrush Color="LightBlue"/>
+                                </Ellipse.Fill>
+                            </Ellipse>
+                            <Ellipse  StrokeThickness="5">
+                                <Ellipse.Stroke>
+                                    <SolidColorBrush x:Name="StrokeColor"  Color="Blue"/>
+                                </Ellipse.Stroke>
+                                <Ellipse.Fill>
+                                    <ImageBrush ImageSource="/Pictures/xmark.png"/>
+                                </Ellipse.Fill>
+                                <Ellipse.Triggers>
+                                    <EventTrigger RoutedEvent="MouseEnter">
+                                        <BeginStoryboard  x:Name="EllipseSB">
+                                            <Storyboard>
+                                                <DoubleAnimation SpeedRatio="5" Storyboard.TargetProperty="StrokeThickness" To="6"/>
+                                                <ColorAnimation SpeedRatio="5" Storyboard.TargetName="StrokeColor" Storyboard.TargetProperty="Color" To="Black"/>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger>
+                                    <EventTrigger RoutedEvent="MouseLeave">
+                                        <BeginStoryboard  x:Name="EllipseSBn">
+                                            <Storyboard>
+                                                <DoubleAnimation SpeedRatio="5" Storyboard.TargetProperty="StrokeThickness" To="5"/>
+                                                <ColorAnimation SpeedRatio="5" Storyboard.TargetName="StrokeColor" Storyboard.TargetProperty="Color" To="Blue"/>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger>
+                                </Ellipse.Triggers>
+                            </Ellipse>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="addStyle" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Grid>
+                            <Ellipse>
+
+                                <Ellipse.Fill>
+                                    <SolidColorBrush Color="LightBlue"/>
+                                </Ellipse.Fill>
+                            </Ellipse>
+                            <Ellipse  StrokeThickness="5">
+                                <Ellipse.Stroke>
+                                    <SolidColorBrush x:Name="StrokeColor"  Color="Blue"/>
+                                </Ellipse.Stroke>
+                                <Ellipse.Fill>
+                                    <ImageBrush ImageSource="/Pictures/plus.png"/>
+                                </Ellipse.Fill>
+                                <Ellipse.Triggers>
+                                    <EventTrigger RoutedEvent="MouseEnter">
+                                        <BeginStoryboard  x:Name="EllipseSB">
+                                            <Storyboard>
+                                                <DoubleAnimation SpeedRatio="5" Storyboard.TargetProperty="StrokeThickness" To="6"/>
+                                                <ColorAnimation SpeedRatio="5" Storyboard.TargetName="StrokeColor" Storyboard.TargetProperty="Color" To="Black"/>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger>
+                                    <EventTrigger RoutedEvent="MouseLeave">
+                                        <BeginStoryboard  x:Name="EllipseSBn">
+                                            <Storyboard>
+                                                <DoubleAnimation SpeedRatio="5" Storyboard.TargetProperty="StrokeThickness" To="5"/>
+                                                <ColorAnimation SpeedRatio="5" Storyboard.TargetName="StrokeColor" Storyboard.TargetProperty="Color" To="Blue"/>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger>
+                                </Ellipse.Triggers>
+                            </Ellipse>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
     <Grid x:Name="structure" Background="AliceBlue">
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Button Grid.Row="0" Width="100" HorizontalAlignment="Right" Content="Назад" x:Name="backButton" Margin="8" Click="backButton_Click"/>
+        <Button Grid.Row="0" Width="100" HorizontalAlignment="Right" Content="Назад" x:Name="backButton" Margin="8" Click="backButton_Click" MouseEnter="backButton_MouseEnter"/>
         <StackPanel Grid.Row="1" x:Name="stackTest" HorizontalAlignment="Center">
 
         </StackPanel>

@@ -23,6 +23,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        
         <Style TargetType="DataGridCell" x:Name="hello">
             <Setter Property="Background" Value="AliceBlue"/>
             <Setter Property="BorderBrush" Value="Blue"/>
