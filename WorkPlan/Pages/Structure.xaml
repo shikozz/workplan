@@ -49,6 +49,7 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
+            <Setter Property="Margin" Value="10"></Setter>
         </Style>
         <Style x:Key="addStyle" TargetType="Button">
             <Setter Property="Template">
@@ -93,14 +94,18 @@
             </Setter>
         </Style>
     </Page.Resources>
-    <Grid x:Name="structure" Background="AliceBlue">
+
+    <Grid x:Name="structure" Background="AliceBlue" ScrollViewer.CanContentScroll="True">
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Button Grid.Row="0" Width="100" HorizontalAlignment="Right" Content="Назад" x:Name="backButton" Margin="8" Click="backButton_Click" MouseEnter="backButton_MouseEnter"/>
-        <StackPanel Grid.Row="1" x:Name="stackTest" HorizontalAlignment="Center">
+        <Button Grid.Row="0" Width="100" HorizontalAlignment="Right" Content="Назад" x:Name="backButton" Margin="8,8,18,8" Click="backButton_Click" MouseEnter="backButton_MouseEnter"/>
+        <ScrollViewer Grid.Row="1">
+            <StackPanel Grid.Row="1" x:Name="stackTest" HorizontalAlignment="Center">
 
         </StackPanel>
+    </ScrollViewer>
     </Grid>
+
 </Page>

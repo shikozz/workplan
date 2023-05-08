@@ -270,6 +270,7 @@ new Uri("xmark.png", UriKind.Relative)));
                     {
                         Height = 1,
                     };
+                    rect1.Margin = new Thickness(5);
                     rect1.Fill = new SolidColorBrush(System.Windows.Media.Colors.Black);
                     stackPanelAdd.Children.Add(rect1);
                     stackHor.Children.Add(stackPanelAdd);
@@ -419,6 +420,11 @@ new Uri("xmark.png", UriKind.Relative)));
         }
 
         private void backButton_MouseEnter(object sender, MouseEventArgs e)
+        {
+
+        }
+
+        private void structure_Scroll(object sender, System.Windows.Controls.Primitives.ScrollEventArgs e)
         {
 
         }

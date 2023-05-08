@@ -14,17 +14,18 @@
             <RowDefinition Height="80"/>
             <RowDefinition Height="80"/>
             <RowDefinition Height="80"/>
+
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="500"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Button x:Name="redUser" FontFamily="Inder" FontWeight="Bold" Grid.Row="2" HorizontalAlignment="Left" Margin="20" Width="240" Height="40" Content="Редактировать список Пользователей" Click="redUser_Click"/>
-        <Button x:Name="redEmp" FontFamily="Inder" FontWeight="Bold" Grid.Row="1" HorizontalAlignment="Left" Margin="20" Width="240" Height="40" Content="Редактировать список Сотрудников" Click="redEmp_Click"/>
-        <Button x:Name="redDep" FontFamily="Inder" FontWeight="Bold" Grid.Row="0" HorizontalAlignment="Left" Margin="20" Width="240" Height="40" Content="Редактировать список Отделов" Click="redDep_Click"/>
-        <Button x:Name="redSpec" FontFamily="Inder" FontWeight="Bold" Grid.Row="3" HorizontalAlignment="Left" Margin="20" Width="240" Height="40" Content="Редактировать список Должностей" Click="redSpec_Click"/>
-        <Button x:Name="structure" FontFamily="Inder" FontWeight="Bold" Grid.Row="4" HorizontalAlignment="Left" Margin="20" Width="240" Height="40" Content="Посмотреть структуру" Click="structure_Click"/>
+        <Button FontSize="16" x:Name="redUser" FontFamily="Inder" FontWeight="Bold" Grid.Row="2" HorizontalAlignment="Left" Margin="10" Width="340" Height="60" Content="Редактировать список Пользователей" Click="redUser_Click"/>
+        <Button FontSize="16" x:Name="redEmp" FontFamily="Inder" FontWeight="Bold" Grid.Row="1" HorizontalAlignment="Left" Margin="10" Width="340" Height="60" Content="Редактировать список Сотрудников" Click="redEmp_Click"/>
+        <Button FontSize="16" x:Name="redDep" FontFamily="Inder" FontWeight="Bold" Grid.Row="0" HorizontalAlignment="Left" Margin="10" Width="340" Height="60" Content="Редактировать список Отделов" Click="redDep_Click"/>
+        <Button FontSize="16" x:Name="redSpec" FontFamily="Inder" FontWeight="Bold" Grid.Row="3" HorizontalAlignment="Left" Margin="10" Width="340" Height="60" Content="Редактировать список Должностей" Click="redSpec_Click"/>
+        <Button FontSize="26" x:Name="structure" FontFamily="Inder" FontWeight="Bold" Grid.Row="4" HorizontalAlignment="Left" Margin="10" Width="340" Height="70" Content="Посмотреть структуру" Click="structure_Click"/>
         <StackPanel Background="AliceBlue" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="0" Grid.RowSpan="5">
             <Label FontFamily="Inder" FontSize="20" HorizontalAlignment="Center" Content="Инструкция по панели"/>
             <Label x:Name="adminLabel" FontFamily="Inder" FontSize="22" FontWeight="Heavy" HorizontalAlignment="Center" Content="Администратора"/>
