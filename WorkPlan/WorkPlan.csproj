@@ -173,6 +173,9 @@
     <Compile Include="CreateAdmin.xaml.cs">
       <DependentUpon>CreateAdmin.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PrintPreview.xaml.cs">
+      <DependentUpon>PrintPreview.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SiGlogREGWind.xaml.cs">
       <DependentUpon>SiGlogREGWind.xaml</DependentUpon>
     </Compile>
@@ -270,6 +273,10 @@
     <Page Include="CreateAdmin.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PrintPreview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SiGlogREGWind.xaml">
       <SubType>Designer</SubType>

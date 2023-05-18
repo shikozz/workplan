@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Drawing.Printing;
 
 namespace WorkPlan.Pages
 {
@@ -42,6 +43,17 @@ namespace WorkPlan.Pages
             new ObservableCollection<Base.Applications>(SourceCore.MyBase.Applications.Where(Q=>Q.ID_status==setstatus.ID_status).ToList());
             AppGrid.ItemsSource = applications;
             AppGrid.SelectedItem = application;
+        }
+
+        private void printBtn_Click(object sender, RoutedEventArgs e)
+        {
+/*            PrintDialog p =new PrintDialog();
+            if(p.ShowDialog() == true)
+            {
+                p.PrintVisual(AppGrid,"Printing");
+            }*/
+        PrintPreview pp = new PrintPreview();
+            pp.Show();
         }
     }
 }

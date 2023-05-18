@@ -417,3 +417,5 @@ C:\workplan\WorkPlan\obj\Debug\WorkPlan.csproj.CoreCompileInputs.cache
 C:\workplan\WorkPlan\obj\Debug\WorkPlan.csproj.CopyComplete
 C:\workplan\WorkPlan\obj\Debug\WorkPlan.exe
 C:\workplan\WorkPlan\obj\Debug\WorkPlan.pdb
+C:\Users\alexc\OneDrive\Рабочий стол\материалы\workplan\WorkPlan\obj\Debug\PrintPreview.g.cs
+C:\Users\alexc\OneDrive\Рабочий стол\материалы\workplan\WorkPlan\obj\Debug\PrintPreview.baml
