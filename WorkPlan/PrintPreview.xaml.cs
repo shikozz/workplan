@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,6 +9,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -32,6 +34,9 @@ namespace WorkPlan
 
         public void UpdateGrid(Base.Applications application)
         {
+            var dataTable = new DataTable();
+            dataTable.Columns.Add("name");
+            dataTable.Columns.Add("totalprice");
             if ((application == null) && (printGrid.ItemsSource != null))
             {
                 application = (Base.Applications)printGrid.SelectedItem;
@@ -50,10 +55,10 @@ namespace WorkPlan
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-           PrintDialog p =new PrintDialog();
+            System.Windows.Controls.PrintDialog p =new System.Windows.Controls.PrintDialog ();
             if(p.ShowDialog() == true)
             {
-                p.PrintVisual(stacktoprint,"Printing");
+                p.PrintVisual(this,"Printing");
             }
         }
     }
