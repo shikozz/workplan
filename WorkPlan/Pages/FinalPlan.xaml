@@ -37,8 +37,20 @@
                 <DataGridTextColumn Header="Кол-во" Binding="{Binding Path=Количество}" Width="50"/>
                 <DataGridTextColumn Header="Отдел" Binding="{Binding Path=Departments.Название}" Width="200"/>
                 <DataGridTextColumn Header="Создано" Binding="{Binding Path=created_at}" Width="170"/>
+                <DataGridTextColumn Header="Год" Binding="{Binding Path=year}" Width="50"/>
+                <DataGridTemplateColumn CellStyle="{x:Null}">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button FontSize="15" Width="120" Height="30" Click="Button_Click">Редактировать</Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
+        <StackPanel Width="300" x:Name="redFinal" HorizontalAlignment="Right" VerticalAlignment="Stretch" Background="AliceBlue">
+            <ComboBox x:Name="yearCombo"/>
+            <Button x:Name="complete" Click="complete_Click" Height="30" Content="Записать"/>
+        </StackPanel>
         <Button Grid.Row="1" x:Name="printBtn" Click="printBtn_Click" Content="Print"/>
     </Grid>
 </Page>

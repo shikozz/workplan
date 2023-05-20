@@ -4,6 +4,7 @@
     <EntitySetMapping Name="Applications">
       <EntityTypeMapping TypeName="workplanModel.Applications">
         <MappingFragment StoreEntitySet="Applications">
+          <ScalarProperty Name="year" ColumnName="year" />
           <ScalarProperty Name="ID_application" ColumnName="ID_application" />
           <ScalarProperty Name="ID_goods" ColumnName="ID_goods" />
           <ScalarProperty Name="Количество" ColumnName="Количество" />

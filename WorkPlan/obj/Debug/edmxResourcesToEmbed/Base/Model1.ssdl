@@ -11,6 +11,7 @@
     <Property Name="ID_department" Type="int" />
     <Property Name="ID_creator" Type="int" />
     <Property Name="created_at" Type="datetime" />
+    <Property Name="year" Type="int" />
   </EntityType>
   <EntityType Name="Departments">
     <Key>

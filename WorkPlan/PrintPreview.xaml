@@ -20,7 +20,7 @@
             <Setter Property="TextAlignment" Value="Center"/>
         </Style>
     </Window.Resources>
-    <Grid>
+    <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="60"/>
             <RowDefinition Height="200"/>
@@ -118,7 +118,7 @@
         <Label Grid.Row="3" Grid.Column="11" Content="12"/>
         <Label Grid.Row="3" Grid.Column="12" Content="13"/>
         <Label Grid.Row="3" Grid.Column="13" Content="14"/>
-        <DataGrid IsReadOnly="True" AutoGenerateColumns="False" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="14" x:Name="printGrid">
+        <DataGrid HeadersVisibility="None" IsReadOnly="True" AutoGenerateColumns="False" CanUserReorderColumns="False" CanUserSortColumns="False" CanUserResizeColumns="False" CanUserResizeRows="False" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="14" x:Name="printGrid">
             <DataGrid.CellStyle>
                 <Style TargetType="DataGridCell">
                     <Setter Property="BorderBrush" Value="Black"/>
@@ -132,19 +132,19 @@
                 </Style>
             </DataGrid.Resources>
             <DataGrid.Columns>
-                <DataGridTextColumn Width="40" Header="num"/>
+                <DataGridTextColumn Width="40" Header="num" FontSize="15" Binding="{Binding Path=IdString}"/>
                 <DataGridTextColumn Width="350" Header="idnum"/>
                 <DataGridTextColumn Width="80" Header="code"/>
-                <DataGridTextColumn Width="140" Header="name" Binding="{Binding Path=Goods.Название}"/>
+                <DataGridTextColumn Width="140" Header="name" Binding="{Binding Path=Name}"/>
                 <DataGridTextColumn Width="145" Header="nameobj"/>
-                <DataGridTextColumn Width="210" Header="year"/>
+                <DataGridTextColumn Width="210" Header="year" Binding="{Binding Path=year}"/>
                 <DataGridTemplateColumn Width="80" Header="pricetotal">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <TextBlock TextWrapping="Wrap">
                                 <TextBlock.Text>
                                     <MultiBinding StringFormat="{}{0}">
-                                        <Binding Path="TotalPrice" />
+                                        <Binding Path="Sum" />
                                     </MultiBinding>
                                 </TextBlock.Text>
                             </TextBlock>

@@ -16,6 +16,7 @@
     <NavigationProperty Name="Status" Relationship="Self.FK_Applications_Status" FromRole="Applications" ToRole="Status" />
     <NavigationProperty Name="Users" Relationship="Self.FK_Applications_Users" FromRole="Applications" ToRole="Users" />
     <NavigationProperty Name="FinalPlan" Relationship="Self.FK_FinalPlan_Applications" FromRole="Applications" ToRole="FinalPlan" />
+    <Property Name="year" Type="Int32" />
   </EntityType>
   <EntityType Name="Departments">
     <Key>

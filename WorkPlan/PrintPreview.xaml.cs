@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -21,6 +22,14 @@ namespace WorkPlan
     /// Логика взаимодействия для PrintPreview.xaml
     /// </summary>
     /// 
+    public class GrouppedItem
+    {
+        public string Name { get; set; }
+        public decimal Sum { get; set; }
+        public int year { get; set; }
+        public int Id { get; set; }
+        public string IdString { get; set; }
+    }
     public partial class PrintPreview : Window
     {
         public Base.Entities DataBase;
@@ -34,9 +43,6 @@ namespace WorkPlan
 
         public void UpdateGrid(Base.Applications application)
         {
-            var dataTable = new DataTable();
-            dataTable.Columns.Add("name");
-            dataTable.Columns.Add("totalprice");
             if ((application == null) && (printGrid.ItemsSource != null))
             {
                 application = (Base.Applications)printGrid.SelectedItem;
@@ -45,6 +51,27 @@ namespace WorkPlan
             ObservableCollection<Base.Applications> applications =
             new ObservableCollection<Base.Applications>(SourceCore.MyBase.Applications.Where(Q => Q.ID_status == setstatus.ID_status).ToList());
             printGrid.ItemsSource = applications;
+            var groupedData = applications
+                 .GroupBy(item => item.ID_goods)
+                 .Select((group, index )=>
+                 {
+                     var totalValue = group.Sum(item => item.TotalPrice);
+                     var yearS = group.Min(item=>item.year);
+                     return new GrouppedItem
+                     {
+                         Id = (index + 1),
+                         Name = SourceCore.MyBase.Goods.Single(Q=>Q.ID_goods==group.Key).Название,
+                         year = Convert.ToInt32(yearS),
+                         Sum = totalValue
+                     };
+                 })
+                 .Select(item =>
+                 {
+                     item.IdString = item.Id.ToString("D4");
+                     return item;
+                 });
+            var groupedCollection = new ObservableCollection<GrouppedItem>(groupedData);
+            printGrid.ItemsSource = groupedCollection;
             printGrid.SelectedItem = application;
         }
 

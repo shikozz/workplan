@@ -23,6 +23,7 @@ namespace WorkPlan.Pages
     /// </summary>
     public partial class FinalPlan : Page
     {
+        private Base.Applications selectedApp;
         public Base.Entities DataBase;
         public FinalPlan()
         {
@@ -30,6 +31,12 @@ namespace WorkPlan.Pages
             DataContext = this;
             DataBase = new Base.Entities();
             UpdateGrid(null);
+            int year = System.DateTime.Now.Year;
+            yearCombo.Items.Add(year);
+            yearCombo.Items.Add(year+1);
+            yearCombo.Items.Add(year+2);
+            yearCombo.SelectedIndex = 0;
+            redFinal.Width = 0;
         }
 
         public void UpdateGrid(Base.Applications application)
@@ -54,6 +61,29 @@ namespace WorkPlan.Pages
             }*/
         PrintPreview pp = new PrintPreview();
             pp.Show();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            selectedApp = (Base.Applications)AppGrid.SelectedItem;
+            redFinal.Width = 300;
+        }
+
+        private void complete_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                int yearSelect = (int)yearCombo.SelectedItem;
+                Base.Applications redApp = SourceCore.MyBase.Applications.Single(Q=>Q.ID_application== selectedApp.ID_application);
+                redApp.year = yearSelect;
+                SourceCore.MyBase.SaveChanges();
+                UpdateGrid(null);
+            }
+            catch
+            {
+                MessageBox.Show("ERROR 4040404040404040404040404");
+            }
+            redFinal.Width = 0;
         }
     }
 }

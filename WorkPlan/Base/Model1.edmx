@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище workplanModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище workplanModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Applications">
           <Key>
             <PropertyRef Name="ID_application" />
@@ -16,6 +16,7 @@
           <Property Name="ID_department" Type="int" />
           <Property Name="ID_creator" Type="int" />
           <Property Name="created_at" Type="datetime" />
+          <Property Name="year" Type="int" />
         </EntityType>
         <EntityType Name="Departments">
           <Key>
@@ -278,8 +279,7 @@
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="workplanModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -299,6 +299,7 @@
           <NavigationProperty Name="Status" Relationship="Self.FK_Applications_Status" FromRole="Applications" ToRole="Status" />
           <NavigationProperty Name="Users" Relationship="Self.FK_Applications_Users" FromRole="Applications" ToRole="Users" />
           <NavigationProperty Name="FinalPlan" Relationship="Self.FK_FinalPlan_Applications" FromRole="Applications" ToRole="FinalPlan" />
+          <Property Name="year" Type="Int32" />
         </EntityType>
         <EntityType Name="Departments">
           <Key>
@@ -582,6 +583,7 @@
           <EntitySetMapping Name="Applications">
             <EntityTypeMapping TypeName="workplanModel.Applications">
               <MappingFragment StoreEntitySet="Applications">
+                <ScalarProperty Name="year" ColumnName="year" />
                 <ScalarProperty Name="ID_application" ColumnName="ID_application" />
                 <ScalarProperty Name="ID_goods" ColumnName="ID_goods" />
                 <ScalarProperty Name="Количество" ColumnName="Количество" />
