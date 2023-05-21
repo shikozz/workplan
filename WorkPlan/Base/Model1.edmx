@@ -17,6 +17,10 @@
           <Property Name="ID_creator" Type="int" />
           <Property Name="created_at" Type="datetime" />
           <Property Name="year" Type="int" />
+          <Property Name="year1price" Type="money" />
+          <Property Name="year2price" Type="money" />
+          <Property Name="year3price" Type="money" />
+          <Property Name="yearAprice" Type="money" />
         </EntityType>
         <EntityType Name="Departments">
           <Key>
@@ -300,6 +304,10 @@
           <NavigationProperty Name="Users" Relationship="Self.FK_Applications_Users" FromRole="Applications" ToRole="Users" />
           <NavigationProperty Name="FinalPlan" Relationship="Self.FK_FinalPlan_Applications" FromRole="Applications" ToRole="FinalPlan" />
           <Property Name="year" Type="Int32" />
+          <Property Name="year1price" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="year2price" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="year3price" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="yearAprice" Type="Decimal" Precision="19" Scale="4" />
         </EntityType>
         <EntityType Name="Departments">
           <Key>
@@ -583,6 +591,10 @@
           <EntitySetMapping Name="Applications">
             <EntityTypeMapping TypeName="workplanModel.Applications">
               <MappingFragment StoreEntitySet="Applications">
+                <ScalarProperty Name="yearAprice" ColumnName="yearAprice" />
+                <ScalarProperty Name="year3price" ColumnName="year3price" />
+                <ScalarProperty Name="year2price" ColumnName="year2price" />
+                <ScalarProperty Name="year1price" ColumnName="year1price" />
                 <ScalarProperty Name="year" ColumnName="year" />
                 <ScalarProperty Name="ID_application" ColumnName="ID_application" />
                 <ScalarProperty Name="ID_goods" ColumnName="ID_goods" />

@@ -28,8 +28,13 @@ namespace WorkPlan.Base
         public Nullable<int> ID_creator { get; set; }
         public Nullable<System.DateTime> created_at { get; set; }
         public Nullable<int> year { get; set; }
+        public Nullable<decimal> year1price { get; set; }
+        public Nullable<decimal> year2price { get; set; }
+        public Nullable<decimal> year3price { get; set; }
+        public Nullable<decimal> yearAprice { get; set; }
 
         public decimal TotalPrice => (decimal)(Количество * Goods.Цена.Value);
+
         public virtual Departments Departments { get; set; }
         public virtual Goods Goods { get; set; }
         public virtual Status Status { get; set; }

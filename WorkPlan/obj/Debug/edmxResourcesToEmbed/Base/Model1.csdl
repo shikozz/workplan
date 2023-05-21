@@ -17,6 +17,10 @@
     <NavigationProperty Name="Users" Relationship="Self.FK_Applications_Users" FromRole="Applications" ToRole="Users" />
     <NavigationProperty Name="FinalPlan" Relationship="Self.FK_FinalPlan_Applications" FromRole="Applications" ToRole="FinalPlan" />
     <Property Name="year" Type="Int32" />
+    <Property Name="year1price" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="year2price" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="year3price" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="yearAprice" Type="Decimal" Precision="19" Scale="4" />
   </EntityType>
   <EntityType Name="Departments">
     <Key>

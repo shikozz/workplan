@@ -32,9 +32,10 @@ namespace WorkPlan.Pages
             DataBase = new Base.Entities();
             UpdateGrid(null);
             int year = System.DateTime.Now.Year;
-            yearCombo.Items.Add(year);
-            yearCombo.Items.Add(year+1);
-            yearCombo.Items.Add(year+2);
+            for(int i = 0; i<=4; i++)
+            {
+                yearCombo.Items.Add(year + i);
+            }
             yearCombo.SelectedIndex = 0;
             redFinal.Width = 0;
         }
@@ -76,6 +77,34 @@ namespace WorkPlan.Pages
                 int yearSelect = (int)yearCombo.SelectedItem;
                 Base.Applications redApp = SourceCore.MyBase.Applications.Single(Q=>Q.ID_application== selectedApp.ID_application);
                 redApp.year = yearSelect;
+                if(yearSelect==DateTime.Now.Year)
+                {
+                    redApp.year1price = redApp.TotalPrice;
+                    redApp.year2price = 0;
+                    redApp.year3price = 0;
+                    redApp.yearAprice = 0;
+                }
+                if(yearSelect==DateTime.Now.Year+1)
+                {
+                    redApp.year1price = 0;
+                    redApp.year2price= redApp.TotalPrice;
+                    redApp.year3price = 0;
+                    redApp.yearAprice = 0;
+                }
+                if(yearSelect==DateTime.Now.Year+2)
+                {
+                    redApp.year1price = 0;
+                    redApp.year2price = 0;
+                    redApp.year3price= redApp.TotalPrice;
+                    redApp.yearAprice = 0;
+                }
+                if (yearSelect >= DateTime.Now.Year + 3)
+                {
+                    redApp.year1price = 0;
+                    redApp.year2price = 0;
+                    redApp.year3price = 0;
+                    redApp.yearAprice = redApp.TotalPrice;
+                }
                 SourceCore.MyBase.SaveChanges();
                 UpdateGrid(null);
             }

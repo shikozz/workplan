@@ -24,12 +24,20 @@ namespace WorkPlan
     /// 
     public class GrouppedItem
     {
+        public int appId { get; set; }
         public string Name { get; set; }
         public decimal Sum { get; set; }
         public int year { get; set; }
         public int Id { get; set; }
         public string IdString { get; set; }
+
+        public decimal sum1 { get; set; }
+        public decimal sum2 { get; set; }
+        public decimal sum3 { get; set; }
+
+        public decimal sumA { get; set; }
     }
+
     public partial class PrintPreview : Window
     {
         public Base.Entities DataBase;
@@ -39,6 +47,7 @@ namespace WorkPlan
             DataContext = this;
             DataBase = new Base.Entities();
             UpdateGrid(null);
+
         }
 
         public void UpdateGrid(Base.Applications application)
@@ -50,21 +59,28 @@ namespace WorkPlan
             Base.Status setstatus = DataBase.Status.SingleOrDefault(Q => Q.Статус == "Принято");
             ObservableCollection<Base.Applications> applications =
             new ObservableCollection<Base.Applications>(SourceCore.MyBase.Applications.Where(Q => Q.ID_status == setstatus.ID_status).ToList());
-            printGrid.ItemsSource = applications;
             var groupedData = applications
                  .GroupBy(item => item.ID_goods)
                  .Select((group, index )=>
                  {
                      var totalValue = group.Sum(item => item.TotalPrice);
                      var yearS = group.Min(item=>item.year);
+                     var y1p = group.Sum(item=>item.year1price);
+                     var y2p = group.Sum(item => item.year2price);
+                     var y3p = group.Sum (item=>item.year3price);
+                     var yAp = group.Sum(item => item.yearAprice);
                      return new GrouppedItem
                      {
                          Id = (index + 1),
                          Name = SourceCore.MyBase.Goods.Single(Q=>Q.ID_goods==group.Key).Название,
                          year = Convert.ToInt32(yearS),
-                         Sum = totalValue
+                         Sum = totalValue,
+                         sum1 = (decimal)y1p,
+                         sum2 = (decimal)y2p,
+                         sum3 = (decimal)y3p,
+                         sumA = (decimal)yAp,
                      };
-                 })
+                 }) 
                  .Select(item =>
                  {
                      item.IdString = item.Id.ToString("D4");
