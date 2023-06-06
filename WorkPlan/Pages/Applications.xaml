@@ -10,10 +10,15 @@
 
     <Grid KeyDown="OnKeyDownHandler">
         <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
-            <DataGrid IsReadOnly="True" AutoGenerateColumns="False" x:Name="AppGrid">
+        <StackPanel Grid.Row="0" Orientation="Horizontal">
+        <ComboBox Width="350" x:Name="comboFilter" DisplayMemberPath="Название" SelectionChanged="comboFilter_SelectionChanged"/>
+        <Button Width="200" x:Name="resetfilter" Click="resetfilter_Click" Content="Сбросить фильтр"/>
+        </StackPanel>
+        <DataGrid IsReadOnly="True" Grid.Row="1" AutoGenerateColumns="False" x:Name="AppGrid">
             <DataGrid.CellStyle>
                 <Style TargetType="DataGridCell" >
                     <Setter Property="Background" Value="AliceBlue"/>
@@ -47,6 +52,6 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Button Grid.Row="1" Content="GOGOPOWERRANGERS" Click="Button_Click"/>
+        <Button Grid.Row="2" Content="GOGOPOWERRANGERS" Click="Button_Click"/>
     </Grid>
 </Page>

@@ -55,6 +55,40 @@ namespace WorkPlan.Pages
 
         private void printBtn_Click(object sender, RoutedEventArgs e)
         {
+            foreach(Base.Applications apps in DataBase.Applications)
+            {
+                Base.Applications app = new Base.Applications();
+                app = SourceCore.MyBase.Applications.Single(Q => Q.ID_application == apps.ID_application);
+                if (apps.year == DateTime.Now.Year)
+                {
+                    app.year1price = app.TotalPrice;
+                    app.year2price = 0;
+                    app.year3price = 0;
+                    app.yearAprice = 0;
+                }
+                if (apps.year == DateTime.Now.Year+1)
+                {
+                    app.year1price = 0;
+                    app.year2price = app.TotalPrice;
+                    app.year3price = 0;
+                    app.yearAprice = 0;
+                }
+                if (apps.year == DateTime.Now.Year+2)
+                {
+                    app.year1price = 0;
+                    app.year2price = 0;
+                    app.year3price = app.TotalPrice;
+                    app.yearAprice = 0;
+                }
+                if (apps.year >= DateTime.Now.Year+3)
+                {
+                    app.year1price = 0;
+                    app.year2price = 0;
+                    app.year3price = 0;
+                    app.yearAprice = app.TotalPrice;
+                }
+                SourceCore.MyBase.SaveChanges(); 
+            }
 /*            PrintDialog p =new PrintDialog();
             if(p.ShowDialog() == true)
             {
@@ -62,6 +96,7 @@ namespace WorkPlan.Pages
             }*/
         PrintPreview pp = new PrintPreview();
             pp.Show();
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

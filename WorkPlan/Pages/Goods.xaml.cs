@@ -23,10 +23,13 @@ namespace WorkPlan.Pages
     /// </summary>
     public partial class Goods : Page
     {
+        private Base.Goods selectedGood;
+        private Base.Entities DataBase;
         public Goods()
         {
             InitializeComponent();
             DataContext = this;
+            DataBase= new Base.Entities();
             //GoodsGrid.ItemsSource = SourceCore.MyBase.Goods.ToList();
             UpdateGrid(null);
         }
@@ -98,6 +101,13 @@ namespace WorkPlan.Pages
                 filterText.Text = "Введите название товара";
                 filterText.Foreground = new SolidColorBrush(Colors.Gray);
             }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            selectedGood = (Base.Goods)GoodsGrid.SelectedItem;
+            RedactGood newWindow = new RedactGood(this,selectedGood);
+            newWindow.ShowDialog();
         }
     }
 }

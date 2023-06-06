@@ -23,6 +23,7 @@ namespace WorkPlan.Base
         public int ID_goods { get; set; }
         public string Название { get; set; }
         public Nullable<decimal> Цена { get; set; }
+        public string code { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Applications> Applications { get; set; }

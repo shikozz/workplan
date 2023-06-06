@@ -176,6 +176,9 @@
     <Compile Include="PrintPreview.xaml.cs">
       <DependentUpon>PrintPreview.xaml</DependentUpon>
     </Compile>
+    <Compile Include="RedactGood.xaml.cs">
+      <DependentUpon>RedactGood.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SiGlogREGWind.xaml.cs">
       <DependentUpon>SiGlogREGWind.xaml</DependentUpon>
     </Compile>
@@ -275,6 +278,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="PrintPreview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RedactGood.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -61,6 +61,7 @@
     <Property Name="Название" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Цена" Type="Decimal" Precision="19" Scale="4" />
     <NavigationProperty Name="Applications" Relationship="Self.FK_Applications_Goods" FromRole="Goods" ToRole="Applications" />
+    <Property Name="code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="Specializations">
     <Key>

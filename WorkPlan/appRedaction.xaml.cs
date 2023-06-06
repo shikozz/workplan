@@ -53,7 +53,7 @@ namespace WorkPlan
                 EditApp.Количество = Convert.ToInt32(amounttext.Text);
                 EditApp.Status = (Base.Status)combo.SelectedItem;
                 SourceCore.MyBase.SaveChanges();
-                appPage.UpdateGrid(null);
+                appPage.UpdateGrid(null, false) ;
                 appPage.AppGrid.SelectedItem = EditApp;
                 appPage.AppGrid.UpdateLayout();
                 appPage.AppGrid.ScrollIntoView(appPage.AppGrid.SelectedItem);

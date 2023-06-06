@@ -1,4 +1,4 @@
-﻿<Window x:Class="WorkPlan.AddGood"
+﻿<Window x:Class="WorkPlan.RedactGood"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -45,11 +45,11 @@
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
                         <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                            <Label FontFamily="Inder" Content="Добавить товар" Margin="5,5,0,0" FontSize="20" HorizontalAlignment="Center"/>
+                            <Label FontFamily="Inder" Content="Редактировать товар" Margin="5,5,0,0" FontSize="20" HorizontalAlignment="Center"/>
                         </StackPanel>
                         <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Stretch">
                             <Label Width="100" FontFamily="Inder" Content="Название" Margin="5,5,0,0" FontSize="16"/>
-                            <TextBox x:Name="nametext" FontFamily="Inder" FontSize="19" Foreground="Gray" Text="Введите сюда" Width="150" Margin="0,5,5,5" MouseEnter="nametext_MouseEnter" MouseLeave="nametext_MouseLeave" GotFocus="nametext_GotFocus" LostFocus="nametext_LostFocus"/>
+                            <TextBox x:Name="nametext" FontFamily="Inder" FontSize="19" Text="" Width="145" Margin="0,5,5,5" MouseEnter="nametext_MouseEnter" MouseLeave="nametext_MouseLeave" GotFocus="nametext_GotFocus" LostFocus="nametext_LostFocus"/>
                         </StackPanel>
                         <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center">
                             <Label FontFamily="Inder" Width="100" Content="Цена в ₽" Margin="5,5,0,0" FontSize="16" />

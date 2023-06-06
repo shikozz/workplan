@@ -53,6 +53,7 @@
           <Property Name="ID_goods" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Название" Type="nvarchar" MaxLength="50" />
           <Property Name="Цена" Type="money" />
+          <Property Name="code" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Specializations">
           <Key>
@@ -348,6 +349,7 @@
           <Property Name="Название" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Цена" Type="Decimal" Precision="19" Scale="4" />
           <NavigationProperty Name="Applications" Relationship="Self.FK_Applications_Goods" FromRole="Goods" ToRole="Applications" />
+          <Property Name="code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Specializations">
           <Key>
@@ -636,6 +638,7 @@
           <EntitySetMapping Name="Goods">
             <EntityTypeMapping TypeName="workplanModel.Goods">
               <MappingFragment StoreEntitySet="Goods">
+                <ScalarProperty Name="code" ColumnName="code" />
                 <ScalarProperty Name="ID_goods" ColumnName="ID_goods" />
                 <ScalarProperty Name="Название" ColumnName="Название" />
                 <ScalarProperty Name="Цена" ColumnName="Цена" />

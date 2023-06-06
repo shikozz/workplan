@@ -15,27 +15,37 @@ using System.Windows.Shapes;
 namespace WorkPlan
 {
     /// <summary>
-    /// Interaction logic for AddApplication.xaml
+    /// Логика взаимодействия для RedactGood.xaml
     /// </summary>
-    public partial class AddGood : Window
+    public partial class RedactGood : Window
     {
         private Pages.Goods goodsPage;
-        public AddGood(Pages.Goods GoodsPage)
+        private Base.Goods selectedGood;
+        public RedactGood(Pages.Goods GoodsPage, Base.Goods selected)
         {
             InitializeComponent();
             DataContext = this;
             goodsPage = GoodsPage;
+            selectedGood = selected;
+            initial();
         }
 
+        public void initial()
+        {
+            Base.Goods sg = SourceCore.MyBase.Goods.Single(Q=>Q.ID_goods==selectedGood.ID_goods);
+            nametext.Text = sg.Название;
+            amounttext.Text = Convert.ToInt32(sg.Цена).ToString();
+            codetext.Text = sg.code.ToString();
+        }
         private void AuthorizationCommit_Click(object sender, RoutedEventArgs e)
         {
-            try 
+            try
             {
                 var NewGood = new Base.Goods();
+                NewGood = SourceCore.MyBase.Goods.Single(Q=>Q.ID_goods==selectedGood.ID_goods);
                 NewGood.Название = nametext.Text;
                 NewGood.Цена = Convert.ToDecimal(amounttext.Text);
                 NewGood.code = codetext.Text;
-                SourceCore.MyBase.Goods.Add(NewGood);
                 SourceCore.MyBase.SaveChanges();
                 goodsPage.UpdateGrid(null);
                 goodsPage.GoodsGrid.SelectedItem = NewGood;
@@ -43,7 +53,7 @@ namespace WorkPlan
                 goodsPage.GoodsGrid.ScrollIntoView(goodsPage.GoodsGrid.SelectedItem);
                 Close();
             }
-            catch 
+            catch
             {
                 MessageBox.Show("Пожалуйста, введите название, используя любые символы, и укажите цену, используя только цифры");
             }
@@ -71,12 +81,12 @@ namespace WorkPlan
 
         private void nametext_MouseEnter(object sender, MouseEventArgs e)
         {
-           
+
         }
 
         private void nametext_MouseLeave(object sender, MouseEventArgs e)
         {
-            
+
         }
 
         private void nametext_GotFocus(object sender, RoutedEventArgs e)

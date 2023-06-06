@@ -30,12 +30,13 @@ namespace WorkPlan
         public int year { get; set; }
         public int Id { get; set; }
         public string IdString { get; set; }
-
         public decimal sum1 { get; set; }
         public decimal sum2 { get; set; }
         public decimal sum3 { get; set; }
-
         public decimal sumA { get; set; }
+        public int idNum { get; set; }
+        public string code { get; set; }
+        public string description { get; set; }
     }
 
     public partial class PrintPreview : Window
@@ -69,8 +70,10 @@ namespace WorkPlan
                      var y2p = group.Sum(item => item.year2price);
                      var y3p = group.Sum (item=>item.year3price);
                      var yAp = group.Sum(item => item.yearAprice);
+                     var amount = group.Sum(item=>item.Количество);
                      return new GrouppedItem
                      {
+                         idNum = SourceCore.MyBase.Goods.Single(Q=>Q.ID_goods == group.Key).ID_goods,
                          Id = (index + 1),
                          Name = SourceCore.MyBase.Goods.Single(Q=>Q.ID_goods==group.Key).Название,
                          year = Convert.ToInt32(yearS),
@@ -79,6 +82,8 @@ namespace WorkPlan
                          sum2 = (decimal)y2p,
                          sum3 = (decimal)y3p,
                          sumA = (decimal)yAp,
+                         code = SourceCore.MyBase.Goods.Single(Q=>Q.ID_goods==group.Key).code,
+                         description = "Закупка товара \"" + SourceCore.MyBase.Goods.Single(Q=>Q.ID_goods==group.Key).Название+ "\" в количестве "+amount+"шт.",
                      };
                  }) 
                  .Select(item =>

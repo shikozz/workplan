@@ -133,10 +133,34 @@
             </DataGrid.Resources>
             <DataGrid.Columns>
                 <DataGridTextColumn Width="40" Header="num" FontSize="15" Binding="{Binding Path=IdString}"/>
-                <DataGridTextColumn Width="350" Header="idnum"/>
-                <DataGridTextColumn Width="80" Header="code"/>
+                <DataGridTextColumn Width="350" Header="idnum" Binding="{Binding Path=idNum}"/>
+                <DataGridTemplateColumn Width="80" Header="code">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock TextWrapping="Wrap">
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{}{0}">
+                                        <Binding Path="code" />
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
                 <DataGridTextColumn Width="140" Header="name" Binding="{Binding Path=Name}"/>
-                <DataGridTextColumn Width="145" Header="nameobj"/>
+                <DataGridTemplateColumn Width="145" Header="nameobj">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock TextWrapping="Wrap">
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{}{0}">
+                                        <Binding Path="description" />
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
                 <DataGridTextColumn Width="210" Header="year" Binding="{Binding Path=year}"/>
                 <DataGridTemplateColumn Width="80" Header="pricetotal">
                     <DataGridTemplateColumn.CellTemplate>

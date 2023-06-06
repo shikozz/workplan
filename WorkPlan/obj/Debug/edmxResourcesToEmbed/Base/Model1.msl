@@ -49,6 +49,7 @@
     <EntitySetMapping Name="Goods">
       <EntityTypeMapping TypeName="workplanModel.Goods">
         <MappingFragment StoreEntitySet="Goods">
+          <ScalarProperty Name="code" ColumnName="code" />
           <ScalarProperty Name="ID_goods" ColumnName="ID_goods" />
           <ScalarProperty Name="Название" ColumnName="Название" />
           <ScalarProperty Name="Цена" ColumnName="Цена" />

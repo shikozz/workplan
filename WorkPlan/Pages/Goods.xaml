@@ -36,11 +36,19 @@
             </DataGrid.CellStyle>
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Название" Binding="{Binding Path=Название}" Width="*"/>
+                <DataGridTextColumn Header="Код" Binding="{Binding Path=code}" Width="100"/>
                 <DataGridTextColumn Header="Цена" Binding="{Binding Path=Цена, StringFormat={}{0:#.} ₽}" Width="200"/>
                 <DataGridTemplateColumn x:Name="button_cell" CellStyle="{x:Null}">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button FontSize="15" Width="100" Height="30" Click="GoToApplications">УДАЛИТЬ</Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn x:Name="btnred_cell" CellStyle="{x:Null}">
+                    <DataGridTemplateColumn.CellTemplate> 
+                        <DataTemplate>
+                            <Button FontSize="15" Width="150" Height="30" Click="Button_Click">РЕДАКТИРОВАТЬ</Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

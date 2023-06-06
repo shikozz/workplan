@@ -32,9 +32,7 @@ namespace WorkPlan.Base
         public Nullable<decimal> year2price { get; set; }
         public Nullable<decimal> year3price { get; set; }
         public Nullable<decimal> yearAprice { get; set; }
-
         public decimal TotalPrice => (decimal)(Количество * Goods.Цена.Value);
-
         public virtual Departments Departments { get; set; }
         public virtual Goods Goods { get; set; }
         public virtual Status Status { get; set; }
