@@ -232,8 +232,8 @@
                 <DataGridTextColumn Width="135" Header="nameorg"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Button Click="Button_Click" Grid.Row="5"/>
-        <Button Click="Button_Click_1" Grid.Row="5" Grid.Column="1"/>
+        <Button Click="Button_Click" Content="Назад" Grid.Row="5" Style="{x:Null}"/>
+        <Button Click="Button_Click_1" Content="Послать на печать" Grid.Row="5" Width="120" HorizontalAlignment="Left" Style="{x:Null}" Grid.Column="1"/>
     </Grid>
     
 </Window>

@@ -10,5 +10,6 @@ namespace WorkPlan
     class SourceCore
     {
         public static Entities MyBase = new Entities();
+        public static int UserID = new int();
     }
 }

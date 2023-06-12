@@ -47,11 +47,11 @@ namespace WorkPlan
             InitializeComponent();
             DataContext = this;
             DataBase = new Base.Entities();
-            UpdateGrid(null);
+            UpdatePrintGrid(null);
 
         }
 
-        public void UpdateGrid(Base.Applications application)
+        public void UpdatePrintGrid(Base.Applications application)
         {
             if ((application == null) && (printGrid.ItemsSource != null))
             {

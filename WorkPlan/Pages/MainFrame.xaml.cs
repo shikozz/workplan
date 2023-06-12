@@ -32,8 +32,6 @@ namespace WorkPlan.Pages
             role = roleN;
             mainWindow = MainWindow;
             _width = width;
-            //redraw(width);
-            //mainWindow.wid
             DataBase = new Base.Entities();
             init(role);
         }

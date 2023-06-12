@@ -52,6 +52,6 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Button Grid.Row="2" Content="GOGOPOWERRANGERS" Click="Button_Click"/>
+        <Button Grid.Row="2" Content="Настроить принятые заявки" Click="Button_Click"/>
     </Grid>
 </Page>

@@ -30,11 +30,13 @@ namespace WorkPlan.Pages
         private Base.Entities DataBase;
         private bool loadStrc = true;
         private int depNum = 0;
+        private Base.Users User;
 
         public Structure()
         {
             InitializeComponent();
             DataBase = new Base.Entities();
+            User = SourceCore.MyBase.Users.Single(Q=>Q.ID_user==SourceCore.UserID);
             loadStructure();
             backButton.Background = new ImageBrush(new BitmapImage(
 new Uri("xmark.png", UriKind.Relative)));
@@ -55,6 +57,7 @@ new Uri("xmark.png", UriKind.Relative)));
                     FontSize = 40,
                     HorizontalAlignment = HorizontalAlignment.Center,
                 };
+                                stackTest.Children.Add(lostlabel);
                 var btnMainAdd = new Button
                 {
                     Content = "Добавить руководителя",
@@ -64,7 +67,7 @@ new Uri("xmark.png", UriKind.Relative)));
                 Style style = this.FindResource("addStyle") as Style;
                 btnMainAdd.Style = style;
                 btnMainAdd.Click += addMain;
-                stackTest.Children.Add(lostlabel);
+
                 stackTest.Children.Add(btnMainAdd);
             }
             else

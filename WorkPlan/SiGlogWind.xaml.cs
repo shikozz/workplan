@@ -14,13 +14,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Drawing.Imaging;
-//using WorkPlan.Base;
 
 namespace WorkPlan
 {
-    /// <summary>
-    /// Interaction logic for SiGlogWind.xaml
-    /// </summary>
     public partial class SiGlogWind : Window
     {
         private Base.Entities DataBase;
@@ -62,6 +58,7 @@ namespace WorkPlan
             Base.Users User = DataBase.Users.SingleOrDefault(U => U.Логин == LoginText.Text && U.Пароль.Equals(PasswordText.Password, StringComparison.CurrentCulture));
             if (User != null)
             {
+                 SourceCore.UserID = User.ID_user;
                  MainWindow window = new MainWindow(User.ID_user);
                  window.Show();
                  Close();
