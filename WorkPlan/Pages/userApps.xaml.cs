@@ -57,21 +57,22 @@ namespace WorkPlan.Pages
         private void GoToApplications(object sender, RoutedEventArgs e)
         {
             SelectedApp = (Base.Applications)AppGrid.SelectedItem;
-            Base.Status setStatus = DataBase.Status.SingleOrDefault(U => U.ID_status == SelectedApp.ID_status);
+            Base.Status setStatus = DataBase.Status.Single(U => U.ID_status == SelectedApp.ID_status);
             if (SelectedApp.ID_creator != roleN)
             {
                 MessageBox.Show("Вы не можете редактировать чужую заявку!");
             }
             else
             {
-                if (setStatus.Статус != "Принято" || setStatus.Статус!="Закрыто")
+                if (setStatus.Статус == "Принято" || setStatus.Статус=="Закрыто")
                 {
-                    castRedact newWindow = new castRedact(SelectedApp, this);
-                    newWindow.ShowDialog();
+                    
+                    MessageBox.Show("Вы не можете редактировать эту заявку!");
                 }
                 else
                 {
-                    MessageBox.Show("Вы не можете редактировать эту заявку!");
+                    castRedact newWindow = new castRedact(SelectedApp, this);
+                    newWindow.ShowDialog();
                 }
             }
         }
